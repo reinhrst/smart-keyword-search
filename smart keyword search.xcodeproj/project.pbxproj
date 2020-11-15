@@ -1,0 +1,783 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		439216042561293900DDD78B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216032561293900DDD78B /* AppDelegate.swift */; };
+		439216072561293900DDD78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439216052561293900DDD78B /* Main.storyboard */; };
+		439216092561293900DDD78B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216082561293900DDD78B /* ViewController.swift */; };
+		4392160B2561293A00DDD78B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4392160A2561293A00DDD78B /* Assets.xcassets */; };
+		439216162561293B00DDD78B /* smart_keyword_searchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216152561293B00DDD78B /* smart_keyword_searchTests.swift */; };
+		439216212561293B00DDD78B /* smart_keyword_searchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216202561293B00DDD78B /* smart_keyword_searchUITests.swift */; };
+		439216282561293B00DDD78B /* smart keyword search Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 439216272561293B00DDD78B /* smart keyword search Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4392162D2561293B00DDD78B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4392162C2561293B00DDD78B /* Cocoa.framework */; };
+		439216302561293B00DDD78B /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392162F2561293B00DDD78B /* SafariWebExtensionHandler.swift */; };
+		439216332561293B00DDD78B /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 439216322561293B00DDD78B /* _locales */; };
+		439216352561293B00DDD78B /* images in Resources */ = {isa = PBXBuildFile; fileRef = 439216342561293B00DDD78B /* images */; };
+		439216372561293B00DDD78B /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 439216362561293B00DDD78B /* manifest.json */; };
+		439216392561293B00DDD78B /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 439216382561293B00DDD78B /* background.js */; };
+		4392163B2561293B00DDD78B /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 4392163A2561293B00DDD78B /* content.js */; };
+		4392163D2561293B00DDD78B /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 4392163C2561293B00DDD78B /* popup.html */; };
+		4392163F2561293B00DDD78B /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 4392163E2561293B00DDD78B /* popup.css */; };
+		439216412561293B00DDD78B /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 439216402561293B00DDD78B /* popup.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		439216122561293B00DDD78B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 439215F72561293900DDD78B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 439215FE2561293900DDD78B;
+			remoteInfo = "smart keyword search";
+		};
+		4392161D2561293B00DDD78B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 439215F72561293900DDD78B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 439215FE2561293900DDD78B;
+			remoteInfo = "smart keyword search";
+		};
+		439216292561293B00DDD78B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 439215F72561293900DDD78B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 439216262561293B00DDD78B;
+			remoteInfo = "smart keyword search Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		439216492561293B00DDD78B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				439216282561293B00DDD78B /* smart keyword search Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		439215FF2561293900DDD78B /* smart keyword search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "smart keyword search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		439216022561293900DDD78B /* smart_keyword_search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = smart_keyword_search.entitlements; sourceTree = "<group>"; };
+		439216032561293900DDD78B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		439216062561293900DDD78B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		439216082561293900DDD78B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4392160A2561293A00DDD78B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4392160C2561293A00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		439216112561293B00DDD78B /* smart keyword searchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "smart keyword searchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		439216152561293B00DDD78B /* smart_keyword_searchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_keyword_searchTests.swift; sourceTree = "<group>"; };
+		439216172561293B00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "smart keyword searchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		439216202561293B00DDD78B /* smart_keyword_searchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_keyword_searchUITests.swift; sourceTree = "<group>"; };
+		439216222561293B00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		439216272561293B00DDD78B /* smart keyword search Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "smart keyword search Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4392162C2561293B00DDD78B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4392162F2561293B00DDD78B /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		439216322561293B00DDD78B /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		439216342561293B00DDD78B /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		439216362561293B00DDD78B /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		439216382561293B00DDD78B /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		4392163A2561293B00DDD78B /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		4392163C2561293B00DDD78B /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		4392163E2561293B00DDD78B /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		439216402561293B00DDD78B /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		439216422561293B00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		439216432561293B00DDD78B /* smart_keyword_search_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = smart_keyword_search_Extension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		439215FC2561293900DDD78B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4392160E2561293B00DDD78B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439216192561293B00DDD78B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439216242561293B00DDD78B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4392162D2561293B00DDD78B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		439215F62561293900DDD78B = {
+			isa = PBXGroup;
+			children = (
+				439216012561293900DDD78B /* smart keyword search */,
+				439216142561293B00DDD78B /* smart keyword searchTests */,
+				4392161F2561293B00DDD78B /* smart keyword searchUITests */,
+				4392162E2561293B00DDD78B /* smart keyword search Extension */,
+				4392162B2561293B00DDD78B /* Frameworks */,
+				439216002561293900DDD78B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		439216002561293900DDD78B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				439215FF2561293900DDD78B /* smart keyword search.app */,
+				439216112561293B00DDD78B /* smart keyword searchTests.xctest */,
+				4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */,
+				439216272561293B00DDD78B /* smart keyword search Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		439216012561293900DDD78B /* smart keyword search */ = {
+			isa = PBXGroup;
+			children = (
+				439216022561293900DDD78B /* smart_keyword_search.entitlements */,
+				439216032561293900DDD78B /* AppDelegate.swift */,
+				439216052561293900DDD78B /* Main.storyboard */,
+				439216082561293900DDD78B /* ViewController.swift */,
+				4392160A2561293A00DDD78B /* Assets.xcassets */,
+				4392160C2561293A00DDD78B /* Info.plist */,
+			);
+			path = "smart keyword search";
+			sourceTree = "<group>";
+		};
+		439216142561293B00DDD78B /* smart keyword searchTests */ = {
+			isa = PBXGroup;
+			children = (
+				439216152561293B00DDD78B /* smart_keyword_searchTests.swift */,
+				439216172561293B00DDD78B /* Info.plist */,
+			);
+			path = "smart keyword searchTests";
+			sourceTree = "<group>";
+		};
+		4392161F2561293B00DDD78B /* smart keyword searchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				439216202561293B00DDD78B /* smart_keyword_searchUITests.swift */,
+				439216222561293B00DDD78B /* Info.plist */,
+			);
+			path = "smart keyword searchUITests";
+			sourceTree = "<group>";
+		};
+		4392162B2561293B00DDD78B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4392162C2561293B00DDD78B /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4392162E2561293B00DDD78B /* smart keyword search Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4392162F2561293B00DDD78B /* SafariWebExtensionHandler.swift */,
+				439216422561293B00DDD78B /* Info.plist */,
+				439216432561293B00DDD78B /* smart_keyword_search_Extension.entitlements */,
+				439216312561293B00DDD78B /* Resources */,
+			);
+			path = "smart keyword search Extension";
+			sourceTree = "<group>";
+		};
+		439216312561293B00DDD78B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				439216322561293B00DDD78B /* _locales */,
+				439216342561293B00DDD78B /* images */,
+				439216362561293B00DDD78B /* manifest.json */,
+				439216382561293B00DDD78B /* background.js */,
+				4392163A2561293B00DDD78B /* content.js */,
+				4392163C2561293B00DDD78B /* popup.html */,
+				4392163E2561293B00DDD78B /* popup.css */,
+				439216402561293B00DDD78B /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		439215FE2561293900DDD78B /* smart keyword search */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4392164A2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword search" */;
+			buildPhases = (
+				439215FB2561293900DDD78B /* Sources */,
+				439215FC2561293900DDD78B /* Frameworks */,
+				439215FD2561293900DDD78B /* Resources */,
+				439216492561293B00DDD78B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4392162A2561293B00DDD78B /* PBXTargetDependency */,
+			);
+			name = "smart keyword search";
+			productName = "smart keyword search";
+			productReference = 439215FF2561293900DDD78B /* smart keyword search.app */;
+			productType = "com.apple.product-type.application";
+		};
+		439216102561293B00DDD78B /* smart keyword searchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4392164D2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchTests" */;
+			buildPhases = (
+				4392160D2561293B00DDD78B /* Sources */,
+				4392160E2561293B00DDD78B /* Frameworks */,
+				4392160F2561293B00DDD78B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				439216132561293B00DDD78B /* PBXTargetDependency */,
+			);
+			name = "smart keyword searchTests";
+			productName = "smart keyword searchTests";
+			productReference = 439216112561293B00DDD78B /* smart keyword searchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4392161B2561293B00DDD78B /* smart keyword searchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 439216502561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchUITests" */;
+			buildPhases = (
+				439216182561293B00DDD78B /* Sources */,
+				439216192561293B00DDD78B /* Frameworks */,
+				4392161A2561293B00DDD78B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4392161E2561293B00DDD78B /* PBXTargetDependency */,
+			);
+			name = "smart keyword searchUITests";
+			productName = "smart keyword searchUITests";
+			productReference = 4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		439216262561293B00DDD78B /* smart keyword search Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 439216462561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword search Extension" */;
+			buildPhases = (
+				439216232561293B00DDD78B /* Sources */,
+				439216242561293B00DDD78B /* Frameworks */,
+				439216252561293B00DDD78B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "smart keyword search Extension";
+			productName = "smart keyword search Extension";
+			productReference = 439216272561293B00DDD78B /* smart keyword search Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		439215F72561293900DDD78B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					439215FE2561293900DDD78B = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					439216102561293B00DDD78B = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 439215FE2561293900DDD78B;
+					};
+					4392161B2561293B00DDD78B = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 439215FE2561293900DDD78B;
+					};
+					439216262561293B00DDD78B = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 439215FA2561293900DDD78B /* Build configuration list for PBXProject "smart keyword search" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 439215F62561293900DDD78B;
+			productRefGroup = 439216002561293900DDD78B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				439215FE2561293900DDD78B /* smart keyword search */,
+				439216102561293B00DDD78B /* smart keyword searchTests */,
+				4392161B2561293B00DDD78B /* smart keyword searchUITests */,
+				439216262561293B00DDD78B /* smart keyword search Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		439215FD2561293900DDD78B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4392160B2561293A00DDD78B /* Assets.xcassets in Resources */,
+				439216072561293900DDD78B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4392160F2561293B00DDD78B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4392161A2561293B00DDD78B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439216252561293B00DDD78B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439216392561293B00DDD78B /* background.js in Resources */,
+				4392163F2561293B00DDD78B /* popup.css in Resources */,
+				4392163D2561293B00DDD78B /* popup.html in Resources */,
+				439216352561293B00DDD78B /* images in Resources */,
+				439216372561293B00DDD78B /* manifest.json in Resources */,
+				439216332561293B00DDD78B /* _locales in Resources */,
+				4392163B2561293B00DDD78B /* content.js in Resources */,
+				439216412561293B00DDD78B /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		439215FB2561293900DDD78B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439216092561293900DDD78B /* ViewController.swift in Sources */,
+				439216042561293900DDD78B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4392160D2561293B00DDD78B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439216162561293B00DDD78B /* smart_keyword_searchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439216182561293B00DDD78B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439216212561293B00DDD78B /* smart_keyword_searchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439216232561293B00DDD78B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439216302561293B00DDD78B /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		439216132561293B00DDD78B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 439215FE2561293900DDD78B /* smart keyword search */;
+			targetProxy = 439216122561293B00DDD78B /* PBXContainerItemProxy */;
+		};
+		4392161E2561293B00DDD78B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 439215FE2561293900DDD78B /* smart keyword search */;
+			targetProxy = 4392161D2561293B00DDD78B /* PBXContainerItemProxy */;
+		};
+		4392162A2561293B00DDD78B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 439216262561293B00DDD78B /* smart keyword search Extension */;
+			targetProxy = 439216292561293B00DDD78B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		439216052561293900DDD78B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				439216062561293900DDD78B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		439216442561293B00DDD78B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		439216452561293B00DDD78B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		439216472561293B00DDD78B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		439216482561293B00DDD78B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4392164B2561293B00DDD78B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "smart keyword search/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4392164C2561293B00DDD78B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "smart keyword search/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4392164E2561293B00DDD78B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				INFOPLIST_FILE = "smart keyword searchTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/smart keyword search.app/Contents/MacOS/smart keyword search";
+			};
+			name = Debug;
+		};
+		4392164F2561293B00DDD78B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				INFOPLIST_FILE = "smart keyword searchTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/smart keyword search.app/Contents/MacOS/smart keyword search";
+			};
+			name = Release;
+		};
+		439216512561293B00DDD78B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				INFOPLIST_FILE = "smart keyword searchUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "smart keyword search";
+			};
+			name = Debug;
+		};
+		439216522561293B00DDD78B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
+				INFOPLIST_FILE = "smart keyword searchUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "smart keyword search";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		439215FA2561293900DDD78B /* Build configuration list for PBXProject "smart keyword search" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439216442561293B00DDD78B /* Debug */,
+				439216452561293B00DDD78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		439216462561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword search Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439216472561293B00DDD78B /* Debug */,
+				439216482561293B00DDD78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4392164A2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword search" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4392164B2561293B00DDD78B /* Debug */,
+				4392164C2561293B00DDD78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4392164D2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4392164E2561293B00DDD78B /* Debug */,
+				4392164F2561293B00DDD78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		439216502561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439216512561293B00DDD78B /* Debug */,
+				439216522561293B00DDD78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 439215F72561293900DDD78B /* Project object */;
+}
