@@ -3,13 +3,216 @@
 }
 
 body {
-    width: 100px;
+    width: 450px;
     padding: 10px;
 
     font-family: system-ui;
+}
+
+body > h2 {
     text-align: center;
+}
+
+#description {
+    font-size: 12px;
+    position: relative;
+    top: 0px;
+    overflow: hidden;
+    max-height: 10em;
+    transition: max-height 2s;
+}
+#description.collapsed {
+    padding-right: 50px;;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 1.2em;
+    
+}
+
+#description .more {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: none;
+}
+
+#description.collapsed .more {
+    display: block;
+}
+
+#description code {
+    border: 1px rgba(160, 160, 160, .5) solid;
+    display: inline-block;
+    padding: 2px;
+    background-color: rgba(160, 160, 160, .3);
+}
+
+#rules {
+    margin-top: 8px;
+}
+
+#editpage #edit {
+    position: relative;
+    top: 0px;
+}
+
+#editpage #edit #advanced {
+    position: absolute;
+    font-size: 0.8em;
+    top: 0px;
+    right: 0px;
+}
+
+#editpage #edit.advanced .simple-only {
+    display: none;
+}
+
+#editpage #edit:not(.advanced) .advanced-only {
+    display: none;
+}
+
+#editpage ul.error:empty {
+    display: none;
+}
+
+#editpage ul.error > li {
+    list-style-type: none;
+    color: red;
+    transition: background-color 0.5s;
+    background-color: rgba(200, 0, 0, 0);
+}
+
+#editpage ul.error > li.new {
+    background-color: rgba(200, 0, 0, 1);
+}
+
+#rulelistcontainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#rulelist {
+}
+
+#rulelist th {
+    text-align: left;
+}
+
+#rulelist > tbody > tr {
+    cursor: pointer;
+    background-color: rgba(160, 160, 160, 0);
+    transition: background-color 0.2s ease;
+}
+
+#rulelist > tbody > tr:hover {
+    background-color: rgba(160, 160, 160, .1);
+}
+
+#rulelist > tbody > tr > td {
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+#rulelist > tbody > tr > td.prefix, #rulelist > tbody > tr > td.target  {
+    font-family: monospace;
+}
+
+#rulelist > tbody > tr > td.target  {
+    font-size: 0.8em;
+
+}
+
+#rulelist > tbody> tr.advanced  > td.prefix  {
+    color: rgb(200, 0, 0);
+}
+
+#rulelist div.modifierbutton.container {
+    position: absolute;
+    right: 0px;
+}
+
+#rulelist div.modifierbutton {
+    transition: width 0.5s;
+    display: inline-block;
+    text-align: center;
+}
+
+#rulelist div.modifierbutton img {
+    height: .9em;
+    margin-top: 0.08em;
+}
+
+#rulelist tr:not(.active) div.modifierbutton {
+    width: 0px;
+}
+
+#rulelist div.modifierbutton.container {
+    width: 60px;
+}
+
+#rulelist div.modifierbutton.delete {
+    width: 30px;
+    background-color: red;
+}
+
+#rulelist div.modifierbutton.edit {
+    width: 30px;
+    background-color: green;
+}
+
+#buttons {
+    width: 100%;
+}
+
+#buttons button {
+    width: 100px;
+    margin: calc((450px - 400px - 2 * 10px) / 8);
+}
+
+#buttons #clearbutton {
+    display: none;
+}
+
+#editpage.new .title.edit {
+    display: none;
+}
+
+#editpage.edit .title.new {
+    display: none;
+}
+
+#editpage input[name=name] {
+    width: 100%;
+    display: block;
+}
+
+#editpage input[name=prefix] {
+    width: 100%;
+    display: block;
+}
+
+#editpage input[name=target] {
+    width: 100%;
+    display: block;
+}
+
+#editpage input[name=regexstr] {
+    width: 100%;
+    display: block;
+}
+
+#editpage .buttons {
+    display: block;
 }
 
 @media (prefers-color-scheme: dark) {
     /* Dark Mode styles go here. */
+}
+
+span.warningicon {
+    width: 1rem;
+    height: 1rem;
+    background-image: url(images/warning.svg);
+    background-size: 100% 100%;
+    display: inline-block;
 }

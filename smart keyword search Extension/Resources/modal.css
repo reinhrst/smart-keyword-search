@@ -1,0 +1,28 @@
+div.modal {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 100%;
+    -webkit-backdrop-filter: blur(6px);
+}
+
+div.modal > .body {
+    width: 410px;
+    margin: 100px 25px;
+    border: 1px rgb(160, 160, 160) solid;
+    padding: 10px;
+    -webkit-backdrop-filter: blur(20px);
+    background-color: rgba(225, 225, 225, .6)
+}
+
+div.modal.hidden {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Dark Mode styles go here. */
+    div.modal > .body {
+        background-color: rgba(25, 25, 25, .6)
+    }
+}

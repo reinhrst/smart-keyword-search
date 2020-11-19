@@ -1,11 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="popup.css">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="switch.css" />
     <script type="module" src="popup.js"></script>
 </head>
 <body>
-    <strong>Hello World!</strong>
+    <h2>Smart Keyword Search</h2>
+    <p id="description" class="collapsed">
+    Smart Keywork Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
+        <a class="more" href="javascript:void(0)">[more]</a>
+    </p>
 </body>
+<hr />
+<div id="rules">
+    <h3>Rules</h3>
+    <div id="rulelistcontainer">
+        <table id="rulelist">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>prefix</th>
+                    <th>target</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="rulesfooter">Error, startup failed</div>
+</div>
+
+<div id="buttons">
+    <button id="addrule">+</button>
+    <button id="defaultbutton" class="dangerous">Default rules</button>
+    <button id="clearbutton" class="dangerous">Clear all rules</button>
+</div>
+
+<div id="editpage" class="modal hidden">
+    <div class="body">
+        <div id="edit">
+            <h3 class="title edit">Edit rule</h3>
+            <h3 class="title new">Create new rule</h3>
+            <div id="advanced">Advanced:
+                <label class="switch">
+                
+                <input type="checkbox" name="advanced">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <ul>
+            </ul>
+            <div class="form">
+                <div class="advanced-only">
+                    <span class="warningicon"></span>You're in advanced editing mode<span class="warningicon"></span><br />
+                    Please make sure you have read the help section.
+                </div>
+                <input type="hidden" name="id" />
+                <label>
+                    Name (optional):
+                    <ul class="error name"></ul>
+                    <input type="text" name="name" />
+                </label>
+                <label class="simple-only">
+                    Prefix:
+                    <ul class="error prefix"></ul>
+                    <input type="text" name="prefix" />
+                </label>
+                <label class="advanced-only">
+                    Regex:
+                    <ul class="error regexstr"></ul>
+                    <input type="text" name="regexstr" />
+                </label>
+                <label>
+                    Target url:
+                    <ul class="error target"></ul>
+                    <input type="text" name="target" />
+                </label>
+                <div class="buttons">
+                    <button name="submit" type="submit">submit</button>
+                    <button name="cancel" class="modal_close">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteconfirm" class="modal hidden">
+    <div class="body">
+        Delete the rule "<span class="name"></span>"?
+        <input type="hidden" name="id" />
+        <div>
+            <button class="yes">yes</button>
+            <button class="no modal_close">no</button>
+        </div>
+    </div>
+</div>
+
+<div id="defaultconfirm" class="modal hidden">
+    <div class="body">
+        Warning: This action will override all your rules with the default rules. Continue?
+        <div>
+            <button class="yes">Yes</button>
+            <button class="no modal_close">No</button>
+        </div>
+    </div>
+</div>
+
+<div id="clearconfirm" class="modal hidden">
+    <div class="body">
+        Warning: This action will remove all rules. Continue?
+        <div>
+            <button class="yes">Yes</button>
+            <button class="no modal_close">No</button>
+        </div>
+    </div>
+</div>
+
 </html>
