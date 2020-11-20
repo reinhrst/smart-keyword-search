@@ -4,7 +4,7 @@
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "This is smart keyword search Extension. You should tell us what your extension does here.",
+        "message": "This extension allows you to redirect your searches to certain websites. For instance, you can set things up so that any search starting with 'imdb' will directly redirect to the imdb website search engine.",
         "description": "Description of what the extension does."
     }
 }
