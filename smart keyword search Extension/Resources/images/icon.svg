@@ -3,6 +3,9 @@
     rect.background {
         fill: url(#backgroundGradient);
     }
+    rect.foreground {
+        fill: url(#foregroundGradientRed);
+    }
     circle.lookingglass {
         fill: none;
         stroke: url(#foregroundGradient);
@@ -17,7 +20,7 @@
 
     .arrows {
         fill: none;
-        stroke: url(#foregroundGradient);
+        stroke: white;
         stroke-width: 4;
         transform-origin: center;
     }
@@ -39,19 +42,28 @@
       <stop offset="100%" stop-color="#00D" />
     </linearGradient>
 
+    <linearGradient id="foregroundGradientRed" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D05" />
+      <stop offset="100%" stop-color="#902" />
+    </linearGradient>
+
   </defs>
   <rect class="background" width="100" height="100" rx="30" />
   <circle class="lookingglass" cx="50" cy="50" r="15" />
   <path class="lookingglass" d="M37,63 L20,80" />
-  <g class="arrows">
-      <path id="arrow" d="M70,50 L90,50 M83,43 L90,50 L83,57" />
-      <path id="arrow2" d="M66,66 L83,83 M83,73 L83,83 L73,83" />
-      <use href="#arrow" style="transform: rotate(-180deg);"/>
-      <use href="#arrow" style="transform: rotate(-90deg);"/>
-      <use href="#arrow" style="transform: rotate(90deg);"/>
-      <use href="#arrow2" style="transform: rotate(-180deg);"/>
-      <use href="#arrow2" style="transform: rotate(-90deg);"/>
-  </g>
+  <mask id="mask">
+      <g class="arrows">
+          <path id="arrow" d="M70,50 L90,50 M83,43 L90,50 L83,57" />
+          <path id="arrow2" d="M66,66 L83,83 M83,73 L83,83 L73,83" />
+          <use href="#arrow" style="transform: rotate(-180deg);"/>
+          <use href="#arrow" style="transform: rotate(-90deg);"/>
+          <use href="#arrow" style="transform: rotate(90deg);"/>
+          <use href="#arrow2" style="transform: rotate(-180deg);"/>
+          <use href="#arrow2" style="transform: rotate(-90deg);"/>
+      </g>
+  </mask>
+
+  <rect class="foreground" width="100%" height="100" mask="url(#mask)" />
 
 </svg>
 

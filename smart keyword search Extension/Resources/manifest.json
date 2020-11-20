@@ -35,6 +35,6 @@
         "https://www.bing.com/search",
         "https://duckduckgo.com/",
         "webRequest",
-        "storage",
+        "storage"
     ]
 }
