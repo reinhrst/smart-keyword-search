@@ -1,0 +1,14 @@
+<svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    * {
+        fill: white;
+        stroke: white;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1
+    }
+  </style>
+  <path d="M15,77 L65,27 L73,35 L23,85 L14,88 Q10,90 12,86 Z" />
+  <path d="M70,22 L75,17 Q77.5,14.5 80,17 L83,20 Q85.5,22.5 83,25 L78,30 Z" />
+</svg>
+

@@ -1,0 +1,57 @@
+<svg viewport="0 0 100 100" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    rect.background {
+        fill: url(#backgroundGradient);
+    }
+    circle.lookingglass {
+        fill: none;
+        stroke: url(#foregroundGradient);
+        stroke-width: 4;
+    }
+    path.lookingglass {
+        fill: none;
+        stroke: url(#foregroundGradient);
+        stroke-width: 9;
+        stroke-linecap: round;
+    }
+
+    .arrows {
+        fill: none;
+        stroke: url(#foregroundGradient);
+        stroke-width: 4;
+        transform-origin: center;
+    }
+
+    use {
+        transform-origin: center;
+    }
+}
+
+  </style>
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF" />
+      <stop offset="100%" stop-color="#D1D1D1" />
+    </linearGradient>
+
+    <linearGradient id="foregroundGradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#33F" />
+      <stop offset="100%" stop-color="#00D" />
+    </linearGradient>
+
+  </defs>
+  <rect class="background" width="100" height="100" rx="30" />
+  <circle class="lookingglass" cx="50" cy="50" r="15" />
+  <path class="lookingglass" d="M37,63 L20,80" />
+  <g class="arrows">
+      <path id="arrow" d="M70,50 L90,50 M83,43 L90,50 L83,57" />
+      <path id="arrow2" d="M66,66 L83,83 M83,73 L83,83 L73,83" />
+      <use href="#arrow" style="transform: rotate(-180deg);"/>
+      <use href="#arrow" style="transform: rotate(-90deg);"/>
+      <use href="#arrow" style="transform: rotate(90deg);"/>
+      <use href="#arrow2" style="transform: rotate(-180deg);"/>
+      <use href="#arrow2" style="transform: rotate(-90deg);"/>
+  </g>
+
+</svg>
+

@@ -1,0 +1,17 @@
+<svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    path.sign {
+        fill: rgb(240, 225, 0);
+        stroke: rgba(0, 0, 0, 0.7);
+        stroke-linejoin: round;
+        stroke-width: 6;
+    }
+    path.excl, circle {
+        fill: rgba(0, 0, 0, 0.7);
+        stoke: none;
+    }
+  </style>
+  <path class="sign" d="M10,85 L50,15 L90,85 Z" />
+  <path class="excl" d="M46,35 L54,35 L52,65 L48,65 Z" />
+  <circle cx="50" cy="72" r="4" />
+</svg>

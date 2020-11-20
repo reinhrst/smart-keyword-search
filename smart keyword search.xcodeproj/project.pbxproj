@@ -11,8 +11,6 @@
 		439216072561293900DDD78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439216052561293900DDD78B /* Main.storyboard */; };
 		439216092561293900DDD78B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216082561293900DDD78B /* ViewController.swift */; };
 		4392160B2561293A00DDD78B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4392160A2561293A00DDD78B /* Assets.xcassets */; };
-		439216162561293B00DDD78B /* smart_keyword_searchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216152561293B00DDD78B /* smart_keyword_searchTests.swift */; };
-		439216212561293B00DDD78B /* smart_keyword_searchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216202561293B00DDD78B /* smart_keyword_searchUITests.swift */; };
 		439216282561293B00DDD78B /* smart keyword search Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 439216272561293B00DDD78B /* smart keyword search Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4392162D2561293B00DDD78B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4392162C2561293B00DDD78B /* Cocoa.framework */; };
 		439216302561293B00DDD78B /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392162F2561293B00DDD78B /* SafariWebExtensionHandler.swift */; };
@@ -30,20 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		439216122561293B00DDD78B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 439215F72561293900DDD78B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 439215FE2561293900DDD78B;
-			remoteInfo = "smart keyword search";
-		};
-		4392161D2561293B00DDD78B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 439215F72561293900DDD78B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 439215FE2561293900DDD78B;
-			remoteInfo = "smart keyword search";
-		};
 		439216292561293B00DDD78B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 439215F72561293900DDD78B /* Project object */;
@@ -75,10 +59,8 @@
 		439216082561293900DDD78B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4392160A2561293A00DDD78B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4392160C2561293A00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		439216112561293B00DDD78B /* smart keyword searchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "smart keyword searchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		439216152561293B00DDD78B /* smart_keyword_searchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_keyword_searchTests.swift; sourceTree = "<group>"; };
 		439216172561293B00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "smart keyword searchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		439216202561293B00DDD78B /* smart_keyword_searchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_keyword_searchUITests.swift; sourceTree = "<group>"; };
 		439216222561293B00DDD78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		439216272561293B00DDD78B /* smart keyword search Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "smart keyword search Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,20 +83,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		439215FC2561293900DDD78B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4392160E2561293B00DDD78B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		439216192561293B00DDD78B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -148,8 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				439215FF2561293900DDD78B /* smart keyword search.app */,
-				439216112561293B00DDD78B /* smart keyword searchTests.xctest */,
-				4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */,
 				439216272561293B00DDD78B /* smart keyword search Extension.appex */,
 			);
 			name = Products;
@@ -245,42 +211,6 @@
 			productReference = 439215FF2561293900DDD78B /* smart keyword search.app */;
 			productType = "com.apple.product-type.application";
 		};
-		439216102561293B00DDD78B /* smart keyword searchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4392164D2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchTests" */;
-			buildPhases = (
-				4392160D2561293B00DDD78B /* Sources */,
-				4392160E2561293B00DDD78B /* Frameworks */,
-				4392160F2561293B00DDD78B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				439216132561293B00DDD78B /* PBXTargetDependency */,
-			);
-			name = "smart keyword searchTests";
-			productName = "smart keyword searchTests";
-			productReference = 439216112561293B00DDD78B /* smart keyword searchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		4392161B2561293B00DDD78B /* smart keyword searchUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 439216502561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchUITests" */;
-			buildPhases = (
-				439216182561293B00DDD78B /* Sources */,
-				439216192561293B00DDD78B /* Frameworks */,
-				4392161A2561293B00DDD78B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4392161E2561293B00DDD78B /* PBXTargetDependency */,
-			);
-			name = "smart keyword searchUITests";
-			productName = "smart keyword searchUITests";
-			productReference = 4392161C2561293B00DDD78B /* smart keyword searchUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		439216262561293B00DDD78B /* smart keyword search Extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 439216462561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword search Extension" */;
@@ -310,14 +240,6 @@
 					439215FE2561293900DDD78B = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					439216102561293B00DDD78B = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 439215FE2561293900DDD78B;
-					};
-					4392161B2561293B00DDD78B = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 439215FE2561293900DDD78B;
-					};
 					439216262561293B00DDD78B = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -337,8 +259,6 @@
 			projectRoot = "";
 			targets = (
 				439215FE2561293900DDD78B /* smart keyword search */,
-				439216102561293B00DDD78B /* smart keyword searchTests */,
-				4392161B2561293B00DDD78B /* smart keyword searchUITests */,
 				439216262561293B00DDD78B /* smart keyword search Extension */,
 			);
 		};
@@ -351,20 +271,6 @@
 			files = (
 				4392160B2561293A00DDD78B /* Assets.xcassets in Resources */,
 				439216072561293900DDD78B /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4392160F2561293B00DDD78B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4392161A2561293B00DDD78B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,22 +304,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4392160D2561293B00DDD78B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				439216162561293B00DDD78B /* smart_keyword_searchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		439216182561293B00DDD78B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				439216212561293B00DDD78B /* smart_keyword_searchUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		439216232561293B00DDD78B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,16 +315,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		439216132561293B00DDD78B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 439215FE2561293900DDD78B /* smart keyword search */;
-			targetProxy = 439216122561293B00DDD78B /* PBXContainerItemProxy */;
-		};
-		4392161E2561293B00DDD78B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 439215FE2561293900DDD78B /* smart keyword search */;
-			targetProxy = 4392161D2561293B00DDD78B /* PBXContainerItemProxy */;
-		};
 		4392162A2561293B00DDD78B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 439216262561293B00DDD78B /* smart keyword search Extension */;
@@ -657,90 +537,6 @@
 			};
 			name = Release;
 		};
-		4392164E2561293B00DDD78B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
-				INFOPLIST_FILE = "smart keyword searchTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/smart keyword search.app/Contents/MacOS/smart keyword search";
-			};
-			name = Debug;
-		};
-		4392164F2561293B00DDD78B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
-				INFOPLIST_FILE = "smart keyword searchTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/smart keyword search.app/Contents/MacOS/smart keyword search";
-			};
-			name = Release;
-		};
-		439216512561293B00DDD78B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
-				INFOPLIST_FILE = "smart keyword searchUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "smart keyword search";
-			};
-			name = Debug;
-		};
-		439216522561293B00DDD78B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
-				INFOPLIST_FILE = "smart keyword searchUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-searchUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "smart keyword search";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -767,24 +563,6 @@
 			buildConfigurations = (
 				4392164B2561293B00DDD78B /* Debug */,
 				4392164C2561293B00DDD78B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4392164D2561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4392164E2561293B00DDD78B /* Debug */,
-				4392164F2561293B00DDD78B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		439216502561293B00DDD78B /* Build configuration list for PBXNativeTarget "smart keyword searchUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				439216512561293B00DDD78B /* Debug */,
-				439216522561293B00DDD78B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
