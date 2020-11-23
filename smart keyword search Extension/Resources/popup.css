@@ -9,8 +9,29 @@ body {
     font-family: system-ui;
 }
 
+#logo {
+    position: absolute;
+    left: 25px;
+    width: 50px;
+}
+
 body > h2 {
     text-align: center;
+}
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: .5px solid rgba(160, 160, 160, .5);
+    border-radius: .5em;
+    filter: drop-shadow(0 0.1em 0.1em rgba(160, 160, 160, .2));
+    font-size: 1.2em;
+    background-color: rgba(160, 160, 160, .05);
+}
+
+button:active {
+    color: white;
+    background-color: #00D;
 }
 
 #description {
@@ -18,16 +39,24 @@ body > h2 {
     position: relative;
     top: 0px;
     overflow: hidden;
-    max-height: 10em;
+    max-height: 20em;
     transition: max-height 2s;
 }
 #description.collapsed {
-    padding-right: 50px;;
+    max-height: 1.4em;
+}
+
+#description.collapsed > p:first-child {
+    overflow: hidden;
+    padding-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-height: 1.2em;
-    
 }
+
+#description > p:first-child {
+    margin-top: 0;
+}
+
 
 #description .more {
     position: absolute;
@@ -45,10 +74,6 @@ body > h2 {
     display: inline-block;
     padding: 2px;
     background-color: rgba(160, 160, 160, .3);
-}
-
-#rules {
-    margin-top: 8px;
 }
 
 #editpage #edit {
@@ -86,16 +111,63 @@ body > h2 {
     background-color: rgba(200, 0, 0, 1);
 }
 
+#rules {
+    margin-top: 8px;
+    position: relative;
+    top: 0px;
+}
+
+
+#ruletablebuttons {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    cursor: default;
+}
+
+#ruletablebuttons img {
+    height: 1.2em;
+    width: 1.2em;
+    margin: 3px;
+    opacity: 1;
+    transition: opacity 0.4s;
+    cursor: pointer;
+}
+
+#ruletablebuttons:not([activeRuleId]) :is(#editrule, #deleterule) {
+    opacity: 0.3;
+    cursor: default;
+}
+
 #rulelistcontainer {
     width: 100%;
     overflow-x: auto;
+    border: 1px solid black;
 }
 
+
 #rulelist {
+    border-collapse: collapse;
+    margin: -1px;
+    font-size: 0.9em;
 }
+
+#rulelist, #rulelist th, #rulelist td {
+    border: 1px solid black;
+    padding: 4px 8px;
+}
+
 
 #rulelist th {
     text-align: left;
+}
+
+#rulelist > thead > tr {
+    background-color: rgba(160, 160, 160, .2)
+}
+
+#rulelist > tbody > tr:nth-child(odd) {
+    background-color: rgba(160, 160, 160, .1)
 }
 
 #rulelist > tbody > tr {
@@ -105,7 +177,11 @@ body > h2 {
 }
 
 #rulelist > tbody > tr:hover {
-    background-color: rgba(160, 160, 160, .1);
+    background-color: rgba(250, 230, 115, .3);
+}
+
+#rulelist > tbody > tr.active {
+    background-color: rgba(250, 230, 115, 1);
 }
 
 #rulelist > tbody > tr > td {
@@ -123,54 +199,7 @@ body > h2 {
 }
 
 #rulelist > tbody> tr.advanced  > td.prefix  {
-    color: rgb(200, 0, 0);
-}
-
-#rulelist div.modifierbutton.container {
-    position: absolute;
-    right: 0px;
-}
-
-#rulelist div.modifierbutton {
-    transition: width 0.5s;
-    display: inline-block;
-    text-align: center;
-}
-
-#rulelist div.modifierbutton img {
-    height: .9em;
-    margin-top: 0.08em;
-}
-
-#rulelist tr:not(.active) div.modifierbutton {
-    width: 0px;
-}
-
-#rulelist div.modifierbutton.container {
-    width: 60px;
-}
-
-#rulelist div.modifierbutton.delete {
-    width: 30px;
-    background-color: red;
-}
-
-#rulelist div.modifierbutton.edit {
-    width: 30px;
-    background-color: green;
-}
-
-#buttons {
-    width: 100%;
-}
-
-#buttons button {
-    width: 100px;
-    margin: calc((450px - 400px - 2 * 10px) / 8);
-}
-
-#buttons #clearbutton {
-    display: none;
+    color: rgb(230, 50, 50);
 }
 
 #editpage.new .title.edit {
@@ -181,32 +210,51 @@ body > h2 {
     display: none;
 }
 
-#editpage input[name=name] {
-    width: 100%;
+#editpage label {
+    margin-top: 15px;
     display: block;
 }
 
-#editpage input[name=prefix] {
-    width: 100%;
+#editpage :is(input[name=name], input[name=prefix], input[name=target], input[name=regexstr]) {
+    width: calc(100% - 6px);
     display: block;
 }
 
-#editpage input[name=target] {
-    width: 100%;
+.buttons {
     display: block;
+    margin: 10px;
 }
 
-#editpage input[name=regexstr] {
-    width: 100%;
-    display: block;
+.buttons button {
+    margin: 4px;
 }
 
-#editpage .buttons {
+.modal .body {
+    padding-left: 15px;
+    font-size: 0.8em;
+}
+
+.sub {
     display: block;
+    font-size: 0.7em;
+    opacity: .6;
 }
 
 @media (prefers-color-scheme: dark) {
     /* Dark Mode styles go here. */
+    a {
+        color: #99F;
+    }
+    a:visited {
+        color: #F6F;
+    }
+    #rulelist > tbody > tr:hover {
+        background-color: rgba(155, 131, 61, .3);
+    }
+    #rulelist > tbody > tr.active {
+        background-color: rgba(155, 131, 61, 1);
+    }
+
 }
 
 span.warningicon {

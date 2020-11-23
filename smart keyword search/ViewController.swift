@@ -9,7 +9,7 @@ import Cocoa
 import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
 
-let appName = "smart keyword search"
+let appName = "Smart Keyword Search"
 let extensionBundleIdentifier = "nl.claude.smart-keyword-search.Extension"
 
 class ViewController: NSViewController {
@@ -27,14 +27,18 @@ class ViewController: NSViewController {
 
             DispatchQueue.main.async {
                 if (state.isEnabled) {
-                    self.appNameLabel.stringValue = "\(appName)'s extension is currently on."
+                    self.appNameLabel.stringValue = "The \(appName) extension is installed and switched on in safari."
                 } else {
-                    self.appNameLabel.stringValue = "\(appName)'s extension is currently off. You can turn it on in Safari Extensions preferences."
+                    self.appNameLabel.stringValue = "The \(appName) extension is installed, but switched off in Safari. You can turn it on in Safari Extensions preferences."
                 }
             }
         }
     }
-    
+
+    @IBAction func showHelp(_ sender: Any?) {
+        NSWorkspace.shared.open(URL(string: "https://d1agrx7y9zlyta.cloudfront.net")!)
+    }
+
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: extensionBundleIdentifier) { error in
             guard error == nil else {

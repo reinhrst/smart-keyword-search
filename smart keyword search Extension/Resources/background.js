@@ -40,16 +40,26 @@ const ENGINES = {
     },
 }
 
-var rules = null
+let rules = null
 
 function updateRules() {
     browser.storage.local.get("rules").then((result) => {
-        rules = (result.rules || []).map((obj) => Rule.fromObject(obj));
+        if (result.rules) {
+            rules = result.rules.map(Rule.fromObject);
+        } else {
+            // save default rules if rules don't exist
+            rules = Rule.DEFAULT_RULES.map(Rule.fromObject);
+            browser.storage.local.set({"rules": rules})
+        }
     })
 }
 
 browser.storage.onChanged.addListener(() => {updateRules()})
 updateRules()
+
+
+let recentMatchDates = [];
+
 
 browser.webRequest.onBeforeRequest.addListener((details) => {
     console.log("tripped")
@@ -88,6 +98,13 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
             .replace("{" + newdata[0] + ":raw}", newdata[1])
         }, rule.target)
         console.log(`Redirecting to ${newurl}`)
+        const now = new Date()
+        recentMatchDates = recentMatchDates.filter((d) => now - d < 5000)
+        if (recentMatchDates.length > 5) {
+            console.log("hammering, possibly in loop, not redirecting")
+            return
+        }
+        recentMatchDates.push(now)
         browser.tabs.update(details.tabId, {url: newurl})
         return
     }

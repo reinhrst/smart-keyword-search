@@ -1,7 +1,23 @@
-<svg viewport="0 0 100 100" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+<svg viewport="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
   <style>
+    :root {
+        --ws-left: 50px;
+        --ws-right: 50px;
+        --inner-dimension: 412px;
+        --ws-top: 54px;
+        --ws-bottom: 46px;
+    }
     rect.background {
         fill: url(#backgroundGradient);
+        width: 100%;
+        height: 100%;
+    }
+    rect.viewhole {
+        fill: white;
+        width: var(--inner-dimension);
+        height: var(--inner-dimension);
+        transform: translate(var(--ws-left), var(--ws-top));
+        filter: url(#dropShadow);
     }
     rect.foreground {
         fill: url(#foregroundGradientRed);
@@ -9,32 +25,33 @@
     circle.lookingglass {
         fill: none;
         stroke: url(#foregroundGradient);
-        stroke-width: 4;
+        stroke-width: 3;
     }
     path.lookingglass {
         fill: none;
         stroke: url(#foregroundGradient);
-        stroke-width: 9;
+        stroke-width: 7;
         stroke-linecap: round;
     }
 
     .arrows {
         fill: none;
         stroke: white;
-        stroke-width: 4;
+        stroke-width: 3;
         transform-origin: center;
     }
 
     use {
         transform-origin: center;
     }
+
 }
 
   </style>
   <defs>
     <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFF" />
-      <stop offset="100%" stop-color="#D1D1D1" />
+      <stop offset="10%" stop-color="#FFF" />
+      <stop offset="90%" stop-color="#D1D1D1" />
     </linearGradient>
 
     <linearGradient id="foregroundGradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
@@ -47,23 +64,28 @@
       <stop offset="100%" stop-color="#902" />
     </linearGradient>
 
+    <mask id="iconmask">
+        <image href="https://raw.githubusercontent.com/reinhrst/icons/main/svg/big-sur-app-icon-mask.svg" width="100%" height="100%" />
+    </mask>
   </defs>
-  <rect class="background" width="100" height="100" rx="30" />
-  <circle class="lookingglass" cx="50" cy="50" r="15" />
-  <path class="lookingglass" d="M37,63 L20,80" />
-  <mask id="mask">
-      <g class="arrows">
-          <path id="arrow" d="M70,50 L90,50 M83,43 L90,50 L83,57" />
-          <path id="arrow2" d="M66,66 L83,83 M83,73 L83,83 L73,83" />
-          <use href="#arrow" style="transform: rotate(-180deg);"/>
-          <use href="#arrow" style="transform: rotate(-90deg);"/>
-          <use href="#arrow" style="transform: rotate(90deg);"/>
-          <use href="#arrow2" style="transform: rotate(-180deg);"/>
-          <use href="#arrow2" style="transform: rotate(-90deg);"/>
-      </g>
-  </mask>
+  <g class="logoback" mask="url(#iconmask)">
+      <rect class="background" />  <!-- rx=100/5.7 -->
+      <circle class="lookingglass" cx="50" cy="50" r="12" />
+      <path class="lookingglass" d="M39,61 L21,79" />
+      <mask id="mask">
+          <g class="arrows">
+              <path id="arrow" d="M70,50 L87,50 M80,43 L87,50 L80,57" />
+              <path id="arrow2" d="M66,66 L80,80 M80,70 L80,80 L70,80" />
+              <use href="#arrow" style="transform: rotate(-180deg);"/>
+              <use href="#arrow" style="transform: rotate(-90deg);"/>
+              <use href="#arrow" style="transform: rotate(90deg);"/>
+              <use href="#arrow2" style="transform: rotate(-180deg);"/>
+              <use href="#arrow2" style="transform: rotate(-90deg);"/>
+          </g>
+      </mask>
 
-  <rect class="foreground" width="100%" height="100" mask="url(#mask)" />
+      <rect class="foreground" width="100%" height="100" mask="url(#mask)" />
+    </g>
 
 </svg>
 

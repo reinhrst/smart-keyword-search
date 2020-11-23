@@ -1,0 +1,407 @@
+<html>
+    <head>
+        <title>Smart Keyword Search</title>
+        <link rel="stylesheet" href="index.css" />
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="mask-icon" type="image/svg+xml" href="favicon.svg" />
+    </head>
+    <body>
+        <h1>Smart Keyword Search</h1>
+        <h2 id="introduction">Introduction</h2>
+        <p>
+            Smart Keyword Search is a Safari extension, that fixes one of the "missing features" in Safari.
+            Many browsers allow one to customize the Omnibox (this is the address bar, which also functions as a search bar), so that certain searches go to certain websites.
+            For instance, one may want to make it so that if "imdb pulp fiction" is typed into the search bar, it actually searches for pulp fiction on the IMDB website, rather than search for "imdb pulp fiction" on Google (or whichever other search engine you have as deault).
+            This functionality is known as "Smart Keywords" in Firefox' Chrome has the same functionality (although without a clear name).
+            Safari used to have a plugin doing this (<a href="https://marioestrada.github.io/safari-omnikey/">Omnikey</a>), however Safari changed its plugin system in Safari 13, and this plugin stopped working.
+        </p>
+        <p>
+            The extension brings this functionality (back) by intercepting the search request before it's sent to Google / Bing / Yahoo / DuckDuckGo.
+            Unfortunately this is the only way to do this -- it's not possible to directly interact with the content of the omnibox.
+            This does mean that the extension will request access to these pages.
+            For more info, see <a href="#permissions">permissions</a> and <a href="#privacy">privacy</a>.
+        </p>
+
+        <h2 id="use">Installation</h2>
+        <p>
+            The extension needs to be installed through the mac app store.
+            If for some reason you're unhappy with doing so, contact me below and I can provide you with an alternative.
+        </p>
+        <picture>
+            <source srcset="dark/after_install.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/after_install.png" alt="Screenshot after installation" />
+        </picture>
+        <p>
+            After installation, a window will open that prompts you to activate the extension.
+            Click the "Quit and Open Safari Extension Preferences...." button.
+        </p>
+        <picture>
+            <source srcset="dark/activate.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/activate.png" alt="Activate the extension" />
+        </picture>
+        <p>
+            On the settings page, tick the checkbox in front of the Smart Keyword Search extension (1).
+            Select the extension and click "Edit Websites..." (2).
+        </p>        </p>
+        <picture>
+            <source srcset="dark/permissions.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/permissions.png" alt="Set Allow permissions" />
+        </picture>
+        <p>
+            In the next page, switch all websites to "Allow".
+            For more information about this last step (and a possible alternative), see <a href="#permissions">the section on permissions</a>.
+        </p>
+        <p>
+            Now, if everything went correctly, you should be able to type "w juneteenth" in the omnibox, and be directed to wikipedia.
+            If not, see <a href="#troubleshooting">the troubleshooting section</a>.
+        </p>
+        <picture>
+            <source srcset="dark/example.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/example.png" alt="SKS example" />
+        </picture>
+
+        <h2 id="use">Use</h2>
+        <p>
+            The extension works by matching the search query to a list of rules.
+            To get you started, the extension ships with some default rules; you can easily delete these, change them or add others later.
+            This means that right after installation (provided that you have given permission as described in <a href="#permissions">the section on permissions</a>), you can try the extension by searching "w juneteenth", and instantly be taken to the wikipedia page for Juneteenth (if this does not work, see <a href="#troubleshooting">the section on troubleshooting</a>).
+        </p>
+        <picture>
+            <source srcset="dark/example.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/example.png" alt="SKS example" />
+        </picture>
+        <p>
+            Note that the screenshot on top shows the text "w juneteenth - Search Google".
+            As far as Safari knows, it will search on Google for this string.
+            However because we have a (default) rule that intercepts any search done from the omnibox (address bar) that starts with <code>"w "</code> and redirects it to wikipedia, the wikipedia page is opened.
+            Note that the rule ought only to be triggered when searching from the omnibox; a search done directly on Google.com should not be influenced (so you can still google for "w juneteenth" by going first to https://www.google.com/, and then type "w juneteenth" in the search field).
+        </p>
+        <p>
+            As mentioned, the basis of the extension is rules; the first rule that matches the text typed in the omnibox will be applied.
+            If no rules match, the search is "let through" to the default search engine.
+            Rules can be viewed and edited by clicking on the Smart Keyword Search button, left of the address bar.
+        </p>
+        <picture>
+            <source srcset="dark/rules.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/rules.png" alt="Rules view" />
+        </picture>
+        <p>
+        If you cannot find the Smart Keyword Search button in the toolbar, see the <a href="#troubleshooting">section on troubleshooting</a>.
+        </p>
+        <p>
+            On this page, there are buttons to add a new rule (the pencil on a sheet), and to restore the default rules.
+            An existing rule can also be edited or deleted by clicking on a rule and clicking the edit (pencil) or delete (trashcan) button
+        </p>
+        <picture>
+            <source srcset="dark/edit-rule.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/edit-rule.png" alt="Edit rule" />
+        </picture>
+        <p>
+            For an explanation of the fields, see below.
+            The "advanced" slider allows creation of <a href="#advancedrules">advanced rules</a>.
+        </p>
+
+        <h3 id="simplerules">Simple rules</h3>
+        <p>
+            Rules come in two forms: simple rules and advanced rules.
+            Simple rules should be enough for 99% of all search needs.
+            A simple rule has 3 fields: name, prefix and target.
+        </p>
+        <p>
+            The "name" field is optional, and only provided so that rules can easily be identified.
+            "Prefix" specifies the keyword that will trigger the rule.
+            For instance, a prefix of "w" (without space) will catch a search in the omnibox starting with "w " (w followed by a space).
+            "Target" defines where to redirect to.
+            Within the target, the string <code>{search}</code> will be replaced by the text following the "prefix + space".
+            The <code>{search}</code> string will be url encoded (this is probably what you want).
+        </p>
+        <p>
+        For instance, if the prefix is "imdb" and the target is "https://www.imdb.com/find?q={search}", and "imdb pulp fiction" is typed into the onmibox, it will redirect to <code>https://www.imdb.com/find?q=pulp%20fiction</code> (the <code>%20</code> is the url encoding; imdb will search on "pulp fiction" with a normal space).
+        </p>
+        <p>
+            Note that the target <em>must</em> always start with http:// or https://.
+            This is enforced by the Web Extensions standard; it's not possible to redirect to anything else.
+            For simple rules we also enforce that the target always contains at least one <code>{search}</code> string, in order to avoid typos.
+        </p>
+        <h3 id="advancedrules">Advanced rules</h3>
+        <p>
+            As mentioned before, I expect 99% of all users to never need anything except simple rules.
+            However since the goal of this extension is to empower the user, there are advanced rules that allow almost unlimited flexibility.
+            Note that advanced rules are for advanced users only; if you don't know what a regular extension is, you should probably not use advanced rules.
+            Using advanced rules it's also quite easy to accidentally hijack <em>all</em> searches from the omnibox; if you do that, obviously you can easily update / remove the rule. Just be aware.
+        </p>
+        <p>
+            An advanced rule matches a regular expression (rather than a prefix).
+            It allows an unlimited number of named groups within the regular expression, which can be referenced again in the target.
+            Note that it's the user's responsibility to add <code>^</code> and <code>$</code> characters to their regular expressions if you want to ensure matches from the start / until the end of the string (but note that the starting and ending <code>/</code> are NOT part of the regular expression field).
+            As a reference, a simple rule (with a prefix match) for "w" is actually translated into a regular expression <code>^w (?&lt;search&gt;.*)$</code> (read: <coe>^</code> start of string, followed by <code>w </code> (w + space). After this, we define a group matching <code>.*</code> (meaning: everything), and save this to named group <code>search</code>. Finally, we match the end of the string (<code>$</code>); technically this last bit is not necessary, but I like it for clarity sake).
+        </p>
+        <p>
+            Upon a match, each named group is replaced in the target, so for the named group search, there happens a replacement on the target where <code>{search}</code> gets replaced by the content of this named group.
+            By default, url encoding still happens, but if you know what you're doing, you may switch it off by using <code>{search:raw}</code>.
+            For now, it's not possible to add modifiers (flags) to the regular expression.
+        </p>
+        <p>
+            For example, to restore the old omnikey functionality that any search starting with a "!" would go through to Google, use <code>^!(&lt;search&gt;.*)$</code> as regex, and <code>https://www.google.com/search?q={search}&amp;client=safari&amp;rls=en&amp;ie=UTF-8&amp;oe=UTF-8&amp;no_sks=true</code> as target.
+            Smart Keyword Search will only match search requests that look <em>exactly</em> like those coming from the onmibox, so adding a random parameter (<code>no_sks</code> in this case) makes sure other rules are not triggered.
+            Actually, <code>https://www.google.com/search?q={search}</code> would also work (since Safari adds these other parameters by default and any search without them is ignored).
+        </p>
+        <p>
+            In the rules overview, advanced rules show <span style="color: red">***</span> (3 red stars) in the "prefix" column.
+            The full regex is not shown in the overview, since these regular expressions may become quite large.
+        </p>
+        <h3 id="defaultrules">Default Rules</h3>
+        <p>
+            Smart Keyword Search comes with a couple of default rules.
+            This is so that people get up and running quickly after install.
+            The following default rules are currently part of Smart Keyword Search (see the <a href="#simplerules">section on simple rules</a> for an explanation of how they work):
+            <ul>
+                <li> IMDB: any search starting with <code>imdb</code> is sent to imdb.</li>
+                <li> Google Maps: any search starting with <code>gmap</code> is sent to google maps.</li>
+                <li> Apple Maps: any search starting with <code>amap </code> is sent to apple maps. Note that this will result in a request to open the Apple Maps app.</li>
+                <li> Wikipedia: any search starting with <code>w</code> is sent to the english version of wikipedia.</li>
+                <li> App Store: any search starting with <code>app</code> will result in a search in the app store app.</li>
+            </ul>
+
+            Feel free to try these rules upon first install!
+        </p>
+        <h3 id="loops">Loops</h3>
+        <p>
+            It's possible (but hard) to create a system where 1 rule leads to a redirect that will trigger another rule (or even itself), and create a loop.
+            For instance, creating a rule with prefix "a" and target <code>https://www.google.com/search?q=a%20{search}%20extra&amp;client=safari&amp;rls=en&amp;ie=UTF-8&amp;oe=UTF-8</code> will result in such a loop.
+            Unfortunately, it's not possible for Smart Keyword Search to know where a search came from, so detecting the loop is a bit hard.
+            Smart Keyword Search therefore uses some crude protection: it has a simple internal counter, and if it's triggered more than 5 times in 5 seconds, it temporarily stops working.
+            Let me know if this behaviour is a problem for you, and I can look at alternative approaches.
+        </p>
+
+        <h2 id="examples">Rule examples</h2>
+        <p>
+            The following rules can be used as examples.
+            The are examples only: inclusion in here in no way endorses a company or product.
+            It may be that some rules will stop working in the future (if companies update their websites).
+            Please report any not-working rules.
+            Also feel free to contribute to this section, by sharing your rules through the contact form.
+        </p>
+        <p>
+            Note that the list does not specify a "prefix".
+            It's up to you to choose your own prefix.
+            For instance, you might choose <code>map</code> as prefix for google maps, however if you also want a shortcut of apple maps (or you actually search quite often for something like "map array javascript"), this may not be the best choice.
+            For advanced rules, we will provide the regular expression.
+        </p>
+        <p>
+            <ul class="examples">
+                <li>
+                    <div class="description">Search on the Internet Movie Database</div>
+                    <div class="target"><code>https://www.imdb.com/find?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Search on Google Maps</div>
+                    <div class="target"><code>https://www.google.com/maps/search/{search}/</code></div>
+                </li>
+                <li>
+                    <div class="description">Search on Apple Maps</div>
+                    <div class="target"><code>https://maps.apple.com/?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Search the Mac App Store</div>
+                    <div class="target"><code>https://apps.apple.com/search?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Search Amazon (US) -- for others, just replace the ".com" with whatever you need.</div>
+                    <div class="target"><code>https://www.amazon.com/s?k={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Search Python Documentation</div>
+                    <div class="target"><code>https://docs.python.org/3/search.html?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">R documentation</div>
+                    <div class="target"><code>https://www.rdocumentation.org/search?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Apple developer documentation</div>
+                    <div class="target"><code>https://developer.apple.com/search/?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Youtube</div>
+                    <div class="target"><code>https://www.youtube.com/results?search_query={search}</code></div>
+                </li>
+            </ul>
+        </p>
+
+        <h2 id="permissions">Permissions</h2>
+        <p>
+            This extension needs certain permissions to be able to operate.
+            Without these permissions, the extension will not do anything (so basically, if it seems that the extension is not working, checking the permissions may be a good first step).
+        </p>
+        <h3>Why these permissions</h3>
+        <p>
+            I will quickly explain what permissions are necessary and why.
+            If you don't care about this, then you may skip this section.
+        </p>
+        <p>
+            Say that you search for "w juneteenth" in the omnibox (address bar).
+            Safari Web Extensions (as well as Safari App Extensions, a separate, but similar, technology to make Safari Extensions) don't allow us to hook directly into the omnibox api, to catch this request.
+            What this extension does, is intercept the http request just before it's sent to Google / Bing / Yahoo / DuckDuckGo (technically, even intercepting and stopping the request is not possible, all it does is see the request happening and then very quickly ask the browser to load another page).
+        </p>
+        <p>
+            An extension needs permissions in order to view a request to a certain url (this is a good thing; you wouldn't want an extension to be able to see all you do in your browser, unless you explicitly allow it to do so).
+            Unfortunately, there is no way to fine-grain these permissions; even though this extension only needs to have permissions to be notified in case of a request to <code>https://www.google.com/search</code> (in case of Google as default search engine), the Web Extensions API demands that we request full access to <code>*://*.google.com/*</code>.
+            Also, the extension cannot determine what your default search engine (as set in Safari preferences) is; therefore, the extension will request full access to all 4 possible default search engines.
+            In order for the extension to work, you only need to give it access to your actual default search engine (although, if you give it access to all four sites, you're covered in case you switch default search engine).
+        </p>
+        <h3 id="how-to-set-permissions">How to set permissions</h3>
+        <p>
+            Permissions can be set in 1 of 2 ways. Probably the easiest way is just to type a search term (use "cats in boxes" if you cannot come up with anything), and wait for the page with search results to open.
+        </p>
+        <picture>
+            <source srcset="dark/permissions-on-request.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/permissions-on-request.png" alt="Permissions on request" />
+        </picture>
+        <p>
+            Now click the extension's icon left of the address bar.
+            If you cannot find this icon, check the <a href="#troubleshooting">throubleshooting section</a>.
+        </p>
+        <p>
+            If permissions are not setup correctly, this should tell you that this extension requests permissions, and show you buttons to give permissions.
+            If so, click "Always Allow on This Website" (or "Every Website" to enable permissions for all search engines).
+        </p>
+        <p>
+            Note: it is important to do this <em>on the page of your default search engine</em>.
+            If you do this on another page, you will not see these options.
+        </p>
+        <p>
+            The second way to set permissions is in the Safari Settings (you open these by pressing <code>cmd-,</code>, or selecting "Settings" from the "Safari" menu (left top of your screen)).
+            The settings have a "websites" section; open this, scroll down to "extensions", find Smart Keyword Search and allow all websites.
+        </p>
+        <picture>
+            <source srcset="dark/permissions.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/permissions.png" alt="Set Allow permissions" />
+        </picture>
+        <p>
+            On this page, set all websites (or at least your default search engine) to "Allow".
+            Note that "Ask" does not work for this extension, it has to be "Allow".
+        </p>
+
+        <h2 id="privacy">Privacy Statement</h2>
+        <p>
+            <em>Personal note: </em>
+            Smart Keyword Search takes your privacy very seriously, not only in this statement, but also in real life.
+            I do believe that the right to privacy is one of the most important rights, and strongly believe that this should not be infringed upon so that I (or anyone else) can make more money.
+            Therefore I have a very simple policy: I do not want any data -- with the possible exception (in the future) of some data that shows me how (un)popular the extension is (giving me an (un)incentive to spend more time on its further development).
+        </p>
+        <p>
+            <em>Now for the more traditional statement: </em>
+            No information from Smart Keyword Search leaves your computer (other that through the default Apple methods, if you gave permission for Apple to collect certain data).
+            This means that we do not collect if the extension is active, how many (or which) rules you have activated, and how often you use it, nor do we collect any other data from your computer.
+            In the future we may want to start collecting anonymised usage data (we will never collect non-anonymised data, such as the searches you do, or which rules you have).
+            If so, we will let you know, and give you a chance to opt out.
+        </p>
+        <p>
+            This extension will not look at / read / alter any website you visit.
+            It only inspects all requests to default search engines in order to see if they match one of the rules.
+            These requests are not saved (not even locally on your computer).
+        </p>
+        <p>
+            In rare cases individual search requests may reach us, if they caused a crash and you chose to send us the crash report.
+            In such a case, this data (as well as any other data in the crash report) is treated as personal data under Europe's GDPR Privacy laws, and will only be used to fix the issue that caused the problem, and only be stored for as long as it's useful for the purpose of fixing the issue.
+        </p>
+        <p>
+            When accessing help website, certain data (among which, but not limited to, IP address and browser used) is logged, in order to be able to protect this site from misuse.
+            This website does not track you, install any trackers, or anything of the kind.
+        </p>
+        <p>
+            If using the contact options through email, or at the bottom of this website, we may receive personal information from you (such as your email address and name).
+            This data is processed in order to reply to your email, and identify you in case of future email conversations.
+        </p>
+        <p>
+            If you want to exercise your rights under the GDPR Privacy laws, or have any questions, please email to privacy@(domain of this website).
+        </p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        <p>
+            Below the most common issues, and their solutions.
+            If this section does not help you, please contact me and I will see what I can do.
+        </p>
+        <h3 id="no-icon">No icon in toolbar</h3>
+        <p>
+            If things are not working correctly, the first step is to check if the extension is installed.
+            If the extension is installed, there should be an icon in the Safari toolbar (see below).
+        </p>
+        <picture>
+            <source srcset="dark/toolbar-icon.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/toolbar-icon.png" alt="Toolbar icon" />
+        </picture>
+        <p>
+            If this icon is not there, enable the extension by going to Safari Settings (you open these by pressing <code>cmd-,</code>, or selecting "Settings" from the "Safari" menu (left top of your screen)), and going to the "Extensions" tab.
+        </p>
+        <picture>
+            <source srcset="dark/activate.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/activate.png" alt="Activate the extension" />
+        </picture>
+        <p>
+            If the extension is not here, install it (again) from the mac app store.
+            Else, make sure the checkbox in front of the extension is checked (1); and while you're here, make sure you click "Edit Websites..." (2) and set all websites to "Allow".
+            If the checkbox is checked, however the icon does not appear in the toolbar, it may be because you have customized your toolbar.
+            Go to the menu item "View &rarr; Customize toolbar" to fix this.
+        </p>
+        <h3 id="not-working">Installed, but no rules are working</h3>
+        <p>
+            If you have the icon in the toolbar, however the system is not working at all (none of your rules work), it may be that you did not give the extension the permissions it needs.
+            The extension needs full access to the site you use for your default search engine.
+            For a full explanation, see <a href="#permissions">the section on permissions</a>; for a quickfix, just follow <a href="#how-to-set-permissions">these steps</a>.
+        </p>
+        <p>
+            If the permissions are set correctly, click the extension button in the toolbar and see if you actually have some rules.
+        </p>
+        <picture>
+            <source srcset="dark/rules.png" media="(prefers-color-scheme: dark)" />
+            <img class="paragraph" src="light/rules.png" alt="Rules view" />
+        </picture>
+        <p>
+            If there are indeed rules, but they are not working, contact me through the method below.
+            If you need a quick rule to check, just add one with the following properties.
+            <ul>
+                <li>Description: <code>test</code></li>
+                <li>Prefix: <code>test</code></li>
+                <li>Target: <code>https://www.example.com/?q={search}</code></li>
+            </ul>
+            Now type <code>test my search</code> in the address bar, and it should redirect you to example.com.
+            Make sure to delete this rule afterwards, or you will trigger it every time you make a search starting with "test".
+        <p>
+
+        <h2 id="faq">FAQ</h2>
+        <dl class="faq">
+            <dt>Does the extension work with Dark Mode</dt>
+            <dd>Yes! Both the extension and this website have been dual-developed in dark and light mode.</dd>
+            <dt>Which versions of Safari will this run on?</dt>
+            <dd>The extension is built using Safari Web Extensions, which is compatible with Safari 14 (and supposedly higher versions). It should run on all macs that run Safari 14, both Intel and Apple Silicon, on Big Sur and previous MacOS versions (as long as you have Safari 14). There is currently no plan to develop a version for Safari 13, however if there is a lot of demand, I may consider doing so. iOS and iPadOS do currently not allow installation of Safari Web Extensions, so there is no iPhone/iPad version.</dd>
+            <dt>Pricing</dt>
+            <dd>I am a big fan of free software; at the same time, I absolutely love that Apple has created an ecosystem where it's possible (and easy) to request small sums of money for your app. Somehow I know that it would feel really good if at the end of a day of hard work, I can open a beer and know that the beer was paid for by some people who are happily using this app. For now, I decided to put the app for free on the app store; I could imagine in the future asking a small sum for it (obviously everyone who is already using it then, can keep using it for free), or adding an in-app purchase option (e.g. to buy me a beer :)). Until then, if you want to share your appreciation, write an app store review and/or send me an email.</dd>
+            <dt>If I open lots of tabs and do searches in parallel, only 5 get picked up by Smart Keyword Search</dt>
+            <dd>Smart Keyword Search stops working for 5 seconds if it's triggered more than 5 times in 5 seconds. This is shared among all your tabs. For more information, see <a href="#loops">loops</a>. If this is a problem for you, let me know and I can look into an alternative solution.</dd>
+            <dt>Why does this extension need full access</dt>
+            <dd>This is an unfortunate side effect of how extensions request access. For more information, see the <a href="#permissions">section on permissions</a>.</dd>
+            <dt>Why does the toolbar icon turn blue on some websites</dt>
+            <dd>Safari gives the toolbar icon a non-grey colour when it's "active" on a website. Since Smart Keyword Search needs full access to websites such as Google / Bing / Yahoo / DuckDuckGo (see <a href="#permissions">here</a> for an explanation why), the icon turns blue on these sites (even though the extension does not do anything as soon as you are on these sites).</dd>
+            <dt>What if you have 2 rules that both match?</dt>
+            <dd>It's possible to make multiple rules that both match (for instance, make 2 rules with the same prefix, have partially overlapping prefixes (e.g. "w" for wikipedia in English and "w k" for wikipedia in Klingon), or if you make advance rules). In these cases, the first rule that matches will be applied. As soon as 1 rule matches, all others are ignored.</dd>
+            <dt>Reorder / import / export / sync rules</dt>
+            <dd>I do have a wishlist for further development on this extension. At this moment, it's not possible to reorder rules, export and import rules, or have them sync between machines (unfortunate Safari doesn't support the part of the Web Extension API that deals with syncing to the cloud). All these things are possible to build, and are planned for future versions. If you like to "+1" one of these, or have your own suggestions, let me know.</dd>
+            <dt>Does this extension work in combination with other extensions?</dt>
+            <dd>As far as I know, it should work in combination with most other extensions (the only exception being Ecosia, see below). If you find another extension that it does not work with, please let me know.</dd>
+            <dt>Will this extension work in combination with the Ecosia extension</dt>
+            <dd>It seems that both this extension and the Ecosia extension employ the same method to intercept the search requests. In case both extensions are active, it may be the case that this extension will not always work correctly. If this is an issue for you, let me know; if there is enough interest, I may consider looking for a solution.</dd>
+            <dt>Are searches that are matched by a rule also sent to Google (or the default search engine)</dt>
+            <dd>As mentioned, this extension works by intercepting the call to the default search engine, and then quickly issuing a command to load a different page. As far as I can tell, on my machine, this always happened before a request was sent to Google (or the default search engine). However, since all is done asynchronously, it's not impossible that the request is already sent to the default search engine before the command to load another page was processed. So: probably not, but your mileage may vary.</dd>
+        </dl>
+        <p>
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+            I'm currently working out a good way to contact me (with a form or something). Until then, you may send me an email on info@(domain of this site).
+        </p>
+    </body>
+</html>

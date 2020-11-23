@@ -1,5 +1,7 @@
 import {Rule} from './rules.js'
 
+const HELP_URL = "https://www.claude.nl/help";
+
 document.querySelector("#description .more").addEventListener("click", (event) => {
     document.querySelector("#description").classList.toggle("collapsed")
 })
@@ -8,20 +10,32 @@ document.querySelector("#addrule").addEventListener("click", (event) => {
     editRule("new")
 })
 
-document.querySelector("#buttons #defaultbutton").addEventListener("click", (event) => {
-    open_modal("defaultconfirm");
+function getActiveRule() {
+    return new Promise((resolve, reject) => {
+        const ruleId = document.querySelector("#ruletablebuttons").getAttribute("activeRuleId");
+        browser.storage.local.get("rules").then((result) => {
+            const rules = result.rules.map(Rule.fromObject);
+            for (const rule of rules) {
+                if (rule.id == ruleId) {
+                    resolve(rule)
+                    return
+                }
+            }
+            reject()
+        })
+    })
+}
+
+document.querySelector("#editrule").addEventListener("click", (event) => {
+    getActiveRule().then((rule) => {editRule(rule)})
 })
 
-document.querySelector("#buttons #clearbutton").addEventListener("click", (event) => {
-    open_modal("clearconfirm");
-})
-
-document.querySelector("#clearconfirm button.yes").addEventListener("click", (event) => {
-    browser.storage.local.set({"rules": []}).then(() => {document.querySelector("#clearconfirm").classList.add("hidden")})
-})
-
-document.querySelector("#defaultconfirm button.yes").addEventListener("click", (event) => {
-    browser.storage.local.set({"rules": Rule.DEFAULT_RULES}).then(() => {document.querySelector("#defaultconfirm").classList.add("hidden")})
+document.querySelector("#deleterule").addEventListener("click", (event) => {
+    getActiveRule().then((rule) => {
+        document.querySelector("#deleteconfirm .name").innerText = rule.name;
+        document.querySelector("#deleteconfirm input[name=id]").value = rule.id;
+        open_modal("deleteconfirm");
+    })
 })
 
 document.querySelector("#editpage button[name=submit]").addEventListener("click", (event) => {
@@ -33,7 +47,7 @@ document.querySelector("#editpage button[name=submit]").addEventListener("click"
 document.querySelector("#deleteconfirm button.yes").addEventListener("click", (event) => {
     const rule_id = document.querySelector("#deleteconfirm input[name=id]").value
     browser.storage.local.get("rules").then((result) => {
-        let rules = (result.rules || []).map((obj) => Rule.fromObject(obj));
+        let rules = result.rules.map(Rule.fromObject);
         rules = rules.filter((rule) => rule.id !== rule_id)
         browser.storage.local.set({"rules": rules}).then(() => {
             document.querySelector("#deleteconfirm").classList.add("hidden")
@@ -75,11 +89,13 @@ function updateView() {
     const rulesfooter = document.querySelector("#rulesfooter")
 
     listbody.querySelectorAll(":scope > tr").forEach((tr) => {tr.remove()})
-    rulesfooter.innerText = "Loading..."
+    document.querySelector("#ruletablebuttons").removeAttribute("activeRuleId")
+    rulesfooter.innerHTML = 'Loading... If stuck, see <a href="https://d1agrx7y9zlyta.cloudfront.net/#troubleshooting" target="_blank">troubleshooting</a>.'
 
     browser.storage.local.get("rules").then((result) => {
-        const rules = (result.rules || []).map((obj) => Rule.fromObject(obj));
+        const rules = result.rules.map((obj) => Rule.fromObject(obj));
         listbody.querySelectorAll(":scope > tr").forEach((tr) => {tr.remove()})
+        document.querySelector("#ruletablebuttons").removeAttribute("activeRuleId")
         if (rules.length === 0) {
             rulesfooter.innerText = "No rules defined."
         } else {
@@ -106,30 +122,12 @@ function updateView() {
             modifierbuttons.classList.add("modifierbutton")
             modifierbuttons.classList.add("container")
 
-            const editbutton = modifierbuttons.appendChild(document.createElement("div"))
-            const editimage = editbutton.appendChild(document.createElement("img"))
-            editimage.alt = "edit"
-            editimage.src = "images/pencil-white.svg"
-            editbutton.classList.add("modifierbutton")
-            editbutton.classList.add("edit")
-            editbutton.addEventListener("click", (event) => {editRule(rule)})
-
-            const deletebutton = modifierbuttons.appendChild(document.createElement("div"))
-            const deleteimage = deletebutton.appendChild(document.createElement("img"))
-            deleteimage.alt = "delete"
-            deleteimage.src = "images/trash-white.svg"
-            deletebutton.classList.add("modifierbutton")
-            deletebutton.classList.add("delete")
-            deletebutton.addEventListener("click", (event) => {
-                document.querySelector("#deleteconfirm .name").innerText = rule.name;
-                document.querySelector("#deleteconfirm input[name=id]").value = rule.id;
-                open_modal("deleteconfirm");
-            })
-
             tr.addEventListener("click", (event) => {
                 if (tr.classList.contains("active")) {
                     tr.classList.remove("active")
+                    document.querySelector("#ruletablebuttons").removeAttribute("activeRuleId")
                 } else {
+                    document.querySelector("#ruletablebuttons").setAttribute("activeRuleId", rule.id)
                     listbody.querySelectorAll(":scope > tr").forEach((_tr) => {
                         _tr.classList.remove("active")
                         tr.classList.add("active")
@@ -213,7 +211,7 @@ function updateRuleFromEdit() {
             reject(errors)
         } else {
             browser.storage.local.get("rules").then((result) => {
-                let rules = (result.rules || []).map((obj) => Rule.fromObject(obj));
+                let rules = result.rules.map(Rule.fromObject);
                 const index = rules.findIndex((rule) => rule.id === newrule.id)
                 if (index === -1) {
                     rules.push(newrule)

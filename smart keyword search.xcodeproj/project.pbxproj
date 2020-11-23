@@ -52,7 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		439215FF2561293900DDD78B /* smart keyword search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "smart keyword search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		439215FF2561293900DDD78B /* Smart Keyword Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Keyword Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		439216022561293900DDD78B /* smart_keyword_search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = smart_keyword_search.entitlements; sourceTree = "<group>"; };
 		439216032561293900DDD78B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		439216062561293900DDD78B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		439216002561293900DDD78B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				439215FF2561293900DDD78B /* smart keyword search.app */,
+				439215FF2561293900DDD78B /* Smart Keyword Search.app */,
 				439216272561293B00DDD78B /* smart keyword search Extension.appex */,
 			);
 			name = Products;
@@ -208,7 +208,7 @@
 			);
 			name = "smart keyword search";
 			productName = "smart keyword search";
-			productReference = 439215FF2561293900DDD78B /* smart keyword search.app */;
+			productReference = 439215FF2561293900DDD78B /* Smart Keyword Search.app */;
 			productType = "com.apple.product-type.application";
 		};
 		439216262561293B00DDD78B /* smart keyword search Extension */ = {
@@ -454,6 +454,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
@@ -475,6 +476,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
@@ -500,6 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search/Info.plist";
@@ -509,7 +512,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart Keyword Search";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -523,6 +526,7 @@
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search/Info.plist";
@@ -532,7 +536,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart Keyword Search";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

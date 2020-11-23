@@ -128,21 +128,33 @@ class Rule {
         return [
                 Rule.fromObject({
                     id: Rule.getNewRuleId(),
-                    name: "python",
-                    prefix: "p",
-                    target: "https://docs.python.org/3/search.html?q={search}&check_keywords=yes&area=default",
+                    name: "IMDB",
+                    prefix: "imdb",
+                    target: "https://www.imdb.com/find?q={search}",
             }),
                 Rule.fromObject({
                     id: Rule.getNewRuleId(),
-                    name: "numpy",
-                    prefix: "np",
-                    target: "https://numpy.org/doc/stable/search.html?q={search}&check_keywords=yes&area=default",
+                    name: "Google map",
+                    prefix: "gmap",
+                    target: "https://www.google.com/maps/search/{search}/",
         }),
                 Rule.fromObject({
                     id: Rule.getNewRuleId(),
-                    name: "wikipedia English",
-                    prefix: "we",
-                    target: "https://en.wikipedia.org/wiki/Special:Search?search={search}&go=Go&ns0=1",
+                    name: "Apple map",
+                    prefix: "amap",
+                    target: "https://maps.apple.com/?q={search}",
+        }),
+                Rule.fromObject({
+                    id: Rule.getNewRuleId(),
+                    name: "Wikipedia",
+                    prefix: "w",
+                    target: "https://en.wikipedia.org/wiki/Special:Search?search={search}",
+        }),
+                Rule.fromObject({
+                    id: Rule.getNewRuleId(),
+                    name: "App store",
+                    prefix: "app",
+                    target: "https://apps.apple.com/search?q={search}",
         }),
         ]
     }

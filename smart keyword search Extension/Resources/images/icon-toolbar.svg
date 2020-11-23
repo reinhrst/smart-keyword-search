@@ -29,8 +29,8 @@
   <circle class="lookingglass" cx="50" cy="50" r="15" />
   <path class="lookingglass" d="M37,63 L20,80" />
   <g class="arrows">
-      <path id="arrow" d="M70,50 L90,50 M83,43 L90,50 L83,57" />
-      <path id="arrow2" d="M66,66 L83,83 M83,73 L83,83 L73,83" />
+      <path id="arrow" d="M73,50 L90,50 M83,43 L90,50 L83,57" />
+      <path id="arrow2" d="M70,70 L83,83 M83,73 L83,83 L73,83" />
       <use href="#arrow" style="transform: rotate(-180deg);"/>
       <use href="#arrow" style="transform: rotate(-90deg);"/>
       <use href="#arrow" style="transform: rotate(90deg);"/>

@@ -1,0 +1,70 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    margin-left: calc((100% - 750px) / 2);
+    max-width: 750px;
+    font-family: sans-serif;
+}
+img.paragraph {
+    max-width: calc(100% - 100px);
+    max-height: 30em;
+    margin: 20px 50px;
+}
+
+dl.faq dt {
+    font-weight: bold;
+    margin-top: 18px;
+    padding-left: 10px;
+}
+
+dl.faq dd {
+    margin-top: 5px;
+}
+
+:is(:not(h1)) + h2 {
+    margin-top: 1em;
+    padding-top: 2.5em;
+    border-top: 1px solid rgba(160, 160, 160, .5);
+}
+
+
+h3 {
+    margin-top: 3em;
+}
+
+code {
+    background-color: rgba(160, 160, 160, .2);
+    border: 1px solid rgba(160, 160, 160, .3);
+    padding: 2px;
+}
+
+ul.examples li:not(:first-child) {
+    margin-top: 8px;
+}
+
+ul.examples div.description::before {
+    content: "Description: ";
+}
+
+ul.examples div.target::before {
+    content: "Target: ";
+}
+
+ul.examples div::before {
+    font-weight: bold;
+    color: #777;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    /* Dark Mode styles go here. */
+    a {
+        color: #77F;
+    }
+    a:visited {
+        color: #F6F;
+    }
+}
+

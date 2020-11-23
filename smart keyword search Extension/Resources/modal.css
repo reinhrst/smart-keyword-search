@@ -5,15 +5,19 @@ div.modal {
     width: 100%;
     min-height: 100%;
     -webkit-backdrop-filter: blur(6px);
+    --body-padding: 20px;
+    --body-hmargin: 25px;
+    --body-border-width: 1px;
 }
 
 div.modal > .body {
-    width: 410px;
-    margin: 100px 25px;
-    border: 1px rgb(160, 160, 160) solid;
-    padding: 10px;
+    width: calc(100% - 2 * var(--body-hmargin) -2 * var(--body-padding) - 2 * var(--body-border-width));
+    margin: 100px var(--body-hmargin);
+    border: var(--body-border-width) rgb(160, 160, 160) solid;
+    padding: var(--body-padding);
     -webkit-backdrop-filter: blur(20px);
-    background-color: rgba(225, 225, 225, .6)
+    background-color: rgba(225, 225, 225, .6);
+    font-size: 0.8em;
 }
 
 div.modal.hidden {

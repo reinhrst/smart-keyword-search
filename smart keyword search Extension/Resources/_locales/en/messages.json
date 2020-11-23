@@ -1,10 +1,10 @@
 {
     "extension_name": {
-        "message": "smart keyword search Extension",
+        "message": "Smart Keyword Search Extension",
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "This extension allows you to redirect your searches to certain websites.",
+        "message": "This extension allows you to redirect your searches based on a keyword.",
         "description": "Description of what the extension does."
     }
 }

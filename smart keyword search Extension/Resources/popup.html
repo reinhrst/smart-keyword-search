@@ -8,15 +8,44 @@
     <script type="module" src="popup.js"></script>
 </head>
 <body>
+    <img id="logo" src="images/icon-128.png" />
     <h2>Smart Keyword Search</h2>
-    <p id="description" class="collapsed">
-    Smart Keywork Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
-        <a class="more" href="javascript:void(0)">[more]</a>
+    <div id="description" class="collapsed">
+    <p>
+        Smart Keyword Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
     </p>
-</body>
+    <p>
+        Please visit our <a href="https://d1agrx7y9zlyta.cloudfront.net/" target="_blank">help page</a> to get an extensive walk-through, see usage examples and leave questions, comments or suggestions.
+    </p>
+        <a class="more" href="javascript:void(0)">[more]</a>
+    </div>
+        
 <hr />
 <div id="rules">
     <h3>Rules</h3>
+    <div id="ruletablebuttons">
+        <picture>
+              <source
+                srcset="images/new-white.svg"
+                media="(prefers-color-scheme: dark)"
+              />
+              <img id="addrule" src="images/new-black.svg" />
+        </picture>
+        <picture>
+              <source
+                srcset="images/pencil-white.svg"
+                media="(prefers-color-scheme: dark)"
+              />
+              <img id="editrule" class="disabled" src="images/pencil-black.svg" />
+        </picture>
+        <picture>
+              <source
+                srcset="images/trash-white.svg"
+                media="(prefers-color-scheme: dark)"
+              />
+              <img id="deleterule" class="disabled" src="images/trash-black.svg" />
+        </picture>
+    </div>
     <div id="rulelistcontainer">
         <table id="rulelist">
             <thead>
@@ -30,13 +59,7 @@
             </tbody>
         </table>
     </div>
-    <div id="rulesfooter">Error, startup failed</div>
-</div>
-
-<div id="buttons">
-    <button id="addrule">+</button>
-    <button id="defaultbutton" class="dangerous">Default rules</button>
-    <button id="clearbutton" class="dangerous">Clear all rules</button>
+    <div id="rulesfooter" class="sub">Error, startup failed. See <a href="https://d1agrx7y9zlyta.cloudfront.net/#troubleshooting" target="_blank">troubleshooting</a>.</div>
 </div>
 
 <div id="editpage" class="modal hidden">
@@ -54,10 +77,12 @@
             <ul>
             </ul>
             <div class="form">
-                <div class="advanced-only">
-                    <span class="warningicon"></span>You're in advanced editing mode<span class="warningicon"></span><br />
-                    Please make sure you have read the help section.
-                </div>
+                <p class="advanced-only">
+                    <span class="warningicon"></span>You're in advanced editing mode<span class="warningicon"></span>
+                    <span class="sub">
+                        Please make sure you have read the <a href="https://d1agrx7y9zlyta.cloudfront.net/#advancedrules" target="_blank">help section on advanced rules</a>.
+                    </span>
+                </p>
                 <input type="hidden" name="id" />
                 <label>
                     Name (optional):
@@ -90,33 +115,17 @@
 
 <div id="deleteconfirm" class="modal hidden">
     <div class="body">
-        Delete the rule "<span class="name"></span>"?
+        <h3>Delete rule</h3>
+        <p>
+            Delete the rule "<span class="name"></span>"?
+        </p>
         <input type="hidden" name="id" />
-        <div>
+        <div class="buttons">
             <button class="yes">yes</button>
             <button class="no modal_close">no</button>
         </div>
     </div>
 </div>
-
-<div id="defaultconfirm" class="modal hidden">
-    <div class="body">
-        Warning: This action will override all your rules with the default rules. Continue?
-        <div>
-            <button class="yes">Yes</button>
-            <button class="no modal_close">No</button>
-        </div>
-    </div>
-</div>
-
-<div id="clearconfirm" class="modal hidden">
-    <div class="body">
-        Warning: This action will remove all rules. Continue?
-        <div>
-            <button class="yes">Yes</button>
-            <button class="no modal_close">No</button>
-        </div>
-    </div>
-</div>
+</body>
 
 </html>
