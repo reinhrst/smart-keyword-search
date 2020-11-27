@@ -36,7 +36,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func showHelp(_ sender: Any?) {
-        NSWorkspace.shared.open(URL(string: "https://d1agrx7y9zlyta.cloudfront.net")!)
+        NSWorkspace.shared.open(URL(string: "https://sks.claude-apps.com/")!)
     }
 
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {

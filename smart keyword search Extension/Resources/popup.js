@@ -90,7 +90,7 @@ function updateView() {
 
     listbody.querySelectorAll(":scope > tr").forEach((tr) => {tr.remove()})
     document.querySelector("#ruletablebuttons").removeAttribute("activeRuleId")
-    rulesfooter.innerHTML = 'Loading... If stuck, see <a href="https://d1agrx7y9zlyta.cloudfront.net/#troubleshooting" target="_blank">troubleshooting</a>.'
+    rulesfooter.innerHTML = 'Loading... If stuck, see <a href="https://sks.claude-apps.com/#troubleshooting" target="_blank">troubleshooting</a>.'
 
     browser.storage.local.get("rules").then((result) => {
         const rules = result.rules.map((obj) => Rule.fromObject(obj));
