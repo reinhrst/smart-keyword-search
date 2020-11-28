@@ -454,7 +454,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
@@ -464,7 +464,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -477,7 +477,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search Extension/smart_keyword_search_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search Extension/Info.plist";
@@ -487,7 +487,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -504,7 +504,7 @@
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search/Info.plist";
@@ -513,7 +513,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
 				PRODUCT_NAME = "Smart Keyword Search";
 				SWIFT_VERSION = 5.0;
@@ -529,7 +529,7 @@
 				CODE_SIGN_ENTITLEMENTS = "smart keyword search/smart_keyword_search.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9TP5YQ8ZUC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "smart keyword search/Info.plist";
@@ -538,7 +538,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.claude.smart-keyword-search";
 				PRODUCT_NAME = "Smart Keyword Search";
 				SWIFT_VERSION = 5.0;
