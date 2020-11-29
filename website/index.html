@@ -5,9 +5,13 @@
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
         <link rel="icon" href="favicon.ico" />
         <link rel="mask-icon" type="image/svg+xml" href="favicon.svg" />
+        <script type="text/javascript" src="toc.js"></script>
     </head>
     <body>
         <h1>Smart Keyword Search</h1>
+        <h2>Table of contents</h2>
+        <div id="toc">
+        </div>
         <h2 id="introduction">Introduction</h2>
         <p>
             Smart Keyword Search is a Safari extension, that fixes one of the "missing features" in Safari.
@@ -24,9 +28,11 @@
         </p>
 
         <h2 id="use">Installation</h2>
+        <a href="https://apps.apple.com/nl/app/smart-keyword-search/id1541221580">
+            <img class="paragraph" id="appstorebadge" src="appstorebadge.svg" alt="download from the app store" />
+        </a>
         <p>
-            The extension needs to be installed through the mac app store.
-            If for some reason you're unhappy with doing so, contact me below and I can provide you with an alternative.
+            The extension needs to be installed through the <a href="https://apps.apple.com/nl/app/smart-keyword-search/id1541221580">mac app store</a>.
         </p>
         <picture>
             <source srcset="dark/after_install.png" media="(prefers-color-scheme: dark)" />
@@ -87,10 +93,10 @@
             <img class="paragraph" src="light/rules.png" alt="Rules view" />
         </picture>
         <p>
-        If you cannot find the Smart Keyword Search button in the toolbar, see the <a href="#troubleshooting">section on troubleshooting</a>.
+            If you cannot find the Smart Keyword Search button in the toolbar, see the <a href="#troubleshooting">section on troubleshooting</a>.
         </p>
         <p>
-            On this page, there are buttons to add a new rule (the pencil on a sheet), and to restore the default rules.
+            On this page, there are buttons to add a new rule (the pencil on a sheet).
             An existing rule can also be edited or deleted by clicking on a rule and clicking the edit (pencil) or delete (trashcan) button
         </p>
         <picture>
@@ -117,12 +123,19 @@
             The <code>{search}</code> string will be url encoded (this is probably what you want).
         </p>
         <p>
-        For instance, if the prefix is "imdb" and the target is "https://www.imdb.com/find?q={search}", and "imdb pulp fiction" is typed into the onmibox, it will redirect to <code>https://www.imdb.com/find?q=pulp%20fiction</code> (the <code>%20</code> is the url encoding; imdb will search on "pulp fiction" with a normal space).
+        For instance, if the prefix is "imdb" and the target is <code>https://www.imdb.com/find?q={search}</code>, and "imdb pulp fiction" is typed into the onmibox, it will redirect to <code>https://www.imdb.com/find?q=pulp%20fiction</code> (the <code>%20</code> is the url encoding; imdb will search on "pulp fiction" with a normal space).
         </p>
         <p>
             Note that the target <em>must</em> always start with http:// or https://.
             This is enforced by the Web Extensions standard; it's not possible to redirect to anything else.
             For simple rules we also enforce that the target always contains at least one <code>{search}</code> string, in order to avoid typos.
+        </p>
+        <p>
+            In order to find out what "target" to use for a specific website, here's a small trick (note, you can always first check out our <a href="#examples">examples</a> to see if your rule already exists).
+            Go to that website, and search for "ZXYXZ" (you can really search for anything "unqiue", as long as it doesn't have spaces or accented letters), and record the URL where you see the results (or more likely: no results).
+            For instance, searching for ZXYXZ on IMDB takes us to <code>https://www.imdb.com/find?q=ZXYXZ&amp;ref_=nv_sr_sm</code>.
+            Now, simply replace "ZXYXZ" in that url with <code>{search}</code> and you're done (so <code>https://www.imdb.com/find?q=ZXYXZ&amp;ref_=nv_sr_sm</code> becomes <code>https://www.imdb.com/find?q={search}&amp;ref_=nv_sr_sm</code>.
+            (Note that usually you can clean up the url by removing anything past the <code>?</code> that does not have to do with <code>something={search}</code>, so in this example, we could clean it up to <code>https://www.imdb.com/find?q={search}</code>, but this is optional, and may not always work.)
         </p>
         <h3 id="advancedrules">Advanced rules</h3>
         <p>
@@ -226,6 +239,10 @@
                 <li>
                     <div class="description">Youtube</div>
                     <div class="target"><code>https://www.youtube.com/results?search_query={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Google Scholar</div>
+                    <div class="target"><code>https://scholar.google.com/scholar?q={search}</code></div>
                 </li>
             </ul>
         </p>

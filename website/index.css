@@ -57,14 +57,31 @@ ul.examples div::before {
     color: #777;
 }
 
+#appstorebadge {
+    margin-left: 210px;
+}
+
+#toc a {
+    text-decoration: none;
+}
+
+#toc li {
+    margin-top: 5px;
+}
+
 
 @media (prefers-color-scheme: dark) {
     /* Dark Mode styles go here. */
     a {
-        color: #77F;
+        color: #BBF;
     }
     a:visited {
-        color: #F6F;
+        color: #FBF;
+    }
+
+    body {
+        background-color: #1E1E1E;
+        color: #FFF;
     }
 }
 
