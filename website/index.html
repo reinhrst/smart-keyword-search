@@ -128,7 +128,7 @@
         <p>
             Note that the target <em>must</em> always start with http:// or https://.
             This is enforced by the Web Extensions standard; it's not possible to redirect to anything else.
-            For simple rules we also enforce that the target always contains at least one <code>{search}</code> string, in order to avoid typos.
+            For simple rules we also enforce that the target always contains at least one <code>{search}</code> string, in order to avoid typos -- if you're sure you don't want to have a <code>{search}</code> in your role, check the <a href="#staticredirects">section on static redirects</a> below.
         </p>
         <p>
             In order to find out what "target" to use for a specific website, here's a small trick (note, you can always first check out our <a href="#examples">examples</a> to see if your rule already exists).
@@ -164,6 +164,20 @@
             In the rules overview, advanced rules show <span style="color: red">***</span> (3 red stars) in the "prefix" column.
             The full regex is not shown in the overview, since these regular expressions may become quite large.
         </p>
+        <h3 id="staticredirects">Static Redirects</h3>
+            <p>
+                A static redirect redirects <em>always</em> to the same url.
+                So whereas a normal "Simple Rule" redirects <code>imbd __something__</code> to <code>https://https://www.imdb.com/find?q=__something__</code>, a static redirect always goes to a specific page.
+                Say that you want to be able to type <code>rkcd</code> (without anything after it) for a random xkcd cartoon, you cannot make a Simple Rule for this (since simple rules always want you to type a prefix + searchterm, and then redirect to something with this searchterm).
+                You <em>can</em> make an Advanced Rule to get this behaviour -- just use <code>^rkcd$</code> as regex, and <code>https://c.xkcd.com/random/comic/</code> as target.
+                The <code>^</code> and <code>$</code> tell the system to match the start and the end of the string; without them any search that somewhere contains <code>rkcd</code> as a substring, would be matched and redirected to this page.
+            </p>
+            <p>
+                Please note that if your shortcode contains other than alphanumeric caracters, you may have to make sure they are properly escaped.
+                The <code>regex</code> field is actually parsed as a regular expression, so for example using <code>^.*$</code> as regex (and <code>https://www.adafruit.com/product/2241</code> as target, sorry, I couldn't come up with a not-contrived example) will actually make every single search go to this lightstrip.
+                In this case, your regex should be <code>^\.\*$</code>.
+                You may use <a href="https://regex-escape.com/regex-escaper-online.php" target="_blank">a tool like this</a> to escape your regex (make sure to not escape the <code>^</code> and <code>$</code> at the start and end).
+            </p>
         <h3 id="defaultrules">Default Rules</h3>
         <p>
             Smart Keyword Search comes with a couple of default rules.
