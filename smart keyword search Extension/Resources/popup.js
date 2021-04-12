@@ -1,12 +1,108 @@
 import {Rule} from './rules.js'
 
-const HELP_URL = "https://www.claude.nl/help";
-
-document.querySelector("#description .more").addEventListener("click", (event) => {
-    document.querySelector("#description").classList.toggle("collapsed")
+document.querySelectorAll(".description").forEach((el) => {
+    el.querySelector("a.more").addEventListener("click", (_event) => {
+        el.classList.toggle("collapsed")
+    })
 })
 
-document.querySelector("#addrule").addEventListener("click", (event) => {
+
+document.querySelector("#openadmin").addEventListener("click", (_event) => {
+    open_modal("adminpage");
+})
+
+document.querySelector("#domanualeditjson").addEventListener("click", (_event) => {
+    document.querySelector("#manualeditjson .message").innerText = ""
+    open_modal("manualeditjson");
+    browser.storage.local.get("rules").then((result) => {
+        const rules_no_id = result.rules.map((rule) => {
+            let newrule = Object.assign(rule)
+            delete newrule["id"]
+            return newrule
+        })
+        document.querySelector("#jsoneditor").value = JSON.stringify({
+            "version": 1,
+            "rules": rules_no_id}, null, 4)
+    })
+})
+
+document.querySelector("#manualeditjson button[name=copy]").addEventListener("click", (_event) => {
+    document.querySelector("#jsoneditor").select()
+    document.execCommand("copy")
+    document.querySelector("#manualeditjson .message").innerText = "Copied to clipboard"
+    document.querySelector("#manualeditjson .message").classList.remove("error")
+    document.querySelector("#manualeditjson .message").classList.add("ok")
+})
+
+document.querySelector("#manualeditjson button[name=clear]").addEventListener("click", (_event) => {
+    document.querySelector("#jsoneditor").value = JSON.stringify({
+        "version": 1,
+        "rules": []}, null, 4)
+    document.querySelector("#manualeditjson .message").innerText = "All rules have been removed. If this is not what you wanted, you may click 'cancel'."
+    document.querySelector("#manualeditjson .message").classList.remove("error")
+    document.querySelector("#manualeditjson .message").classList.add("ok")
+})
+
+document.querySelector("#manualeditjson button[name=submit]").addEventListener("click", (_event) => {
+    const json = document.querySelector("#jsoneditor").value
+    let rawrules
+    try {
+        rawrules = JSON.parse(json)
+    } catch (error) {
+        document.querySelector("#manualeditjson .message").innerText = "The submitted code is not valid JSON, the data has not been saved: " + error;
+        document.querySelector("#manualeditjson .message").classList.remove("ok")
+        document.querySelector("#manualeditjson .message").classList.add("error")
+        return false
+    }
+    if (rawrules.version !== 1) {
+        document.querySelector("#manualeditjson .message").innerText = "There needs to be a 'version' key with value 1 (as int). The rules have not been saved."
+        document.querySelector("#manualeditjson .message").classList.remove("ok")
+        document.querySelector("#manualeditjson .message").classList.add("error")
+        return false
+    }
+    delete rawrules["version"]
+
+    if (!Array.isArray(rawrules.rules)) {
+        document.querySelector("#manualeditjson .message").innerText = "There needs to be a 'rules' key with an array as value. The rules have not been saved."
+        document.querySelector("#manualeditjson .message").classList.remove("ok")
+        document.querySelector("#manualeditjson .message").classList.add("error")
+        return false
+    }
+    let rules = []
+    for (const [i, rawrule] of rawrules.rules.entries()) {
+        if (!rawrule.id) {
+            rawrule.id = Rule.getNewRuleId()
+        }
+        try {
+            rules.push(Rule.fromObject(rawrule))
+        } catch (error) {
+            document.querySelector("#manualeditjson .message").innerText = `There is a problem with rule ${i + 1}: ${error}. The rules have not been saved.`
+            document.querySelector("#manualeditjson .message").classList.remove("ok")
+            document.querySelector("#manualeditjson .message").classList.add("error")
+            return false
+        }
+
+    }
+
+    delete rawrules["rules"]
+    if (Object.keys(rawrules).length !== 0) {
+        document.querySelector("#manualeditjson .message").innerText = `Unexpected key ${Object.keys(rawrules)[0]} found. The rules have not been saved.`
+        document.querySelector("#manualeditjson .message").classList.remove("ok")
+        document.querySelector("#manualeditjson .message").classList.add("error")
+        return false
+
+    }
+
+    browser.storage.local.set({"rules": rules}).then(() => {
+        document.querySelector("#manualeditjson .message").innerText = "Saved."
+        document.querySelector("#manualeditjson .message").classList.remove("error")
+        document.querySelector("#manualeditjson .message").classList.add("ok")
+        window.setTimeout(() => {document.querySelector("#manualeditjson").classList.add("hidden")}, 500);
+    })
+})
+
+
+document.querySelector("#addrule").addEventListener("click", (_event) => {
     editRule("new")
 })
 
@@ -26,11 +122,11 @@ function getActiveRule() {
     })
 }
 
-document.querySelector("#editrule").addEventListener("click", (event) => {
+document.querySelector("#editrule").addEventListener("click", (_event) => {
     getActiveRule().then((rule) => {editRule(rule)})
 })
 
-document.querySelector("#deleterule").addEventListener("click", (event) => {
+document.querySelector("#deleterule").addEventListener("click", (_event) => {
     getActiveRule().then((rule) => {
         document.querySelector("#deleteconfirm .name").innerText = rule.name;
         document.querySelector("#deleteconfirm input[name=id]").value = rule.id;
@@ -38,13 +134,13 @@ document.querySelector("#deleterule").addEventListener("click", (event) => {
     })
 })
 
-document.querySelector("#editpage button[name=submit]").addEventListener("click", (event) => {
+document.querySelector("#editpage button[name=submit]").addEventListener("click", (_event) => {
     updateRuleFromEdit()
     .then(() => {document.querySelector("#editpage").classList.add("hidden")})
     .catch((errors) => {console.log("Editing failed because of", errors)})
 })
 
-document.querySelector("#deleteconfirm button.yes").addEventListener("click", (event) => {
+document.querySelector("#deleteconfirm button.yes").addEventListener("click", (_event) => {
     const rule_id = document.querySelector("#deleteconfirm input[name=id]").value
     browser.storage.local.get("rules").then((result) => {
         let rules = result.rules.map(Rule.fromObject);
@@ -55,7 +151,7 @@ document.querySelector("#deleteconfirm button.yes").addEventListener("click", (e
     })
 })
 
-document.querySelector("#editpage input[name=advanced]").addEventListener("change", (event) => {
+document.querySelector("#editpage input[name=advanced]").addEventListener("change", (_event) => {
     if (document.querySelector("#editpage input[name=advanced]").checked) {
         document.querySelector("#editpage #edit").classList.add("advanced")
     } else {
@@ -69,7 +165,7 @@ document.querySelectorAll("div.modal").forEach((modal) => {
             modal.classList.add("hidden");            
         }
     })
-    modal.querySelectorAll("button.modal_close").forEach((button) => { button.addEventListener("click", (event) => {modal.classList.add("hidden")})
+    modal.querySelectorAll("button.modal_close").forEach((button) => { button.addEventListener("click", (_event) => {modal.classList.add("hidden")})
     })
 })
 
@@ -122,7 +218,7 @@ function updateView() {
             modifierbuttons.classList.add("modifierbutton")
             modifierbuttons.classList.add("container")
 
-            tr.addEventListener("click", (event) => {
+            tr.addEventListener("click", (_event) => {
                 if (tr.classList.contains("active")) {
                     tr.classList.remove("active")
                     document.querySelector("#ruletablebuttons").removeAttribute("activeRuleId")

@@ -10,7 +10,7 @@
 <body>
     <img id="logo" src="images/icon-128.png" />
     <h2>Smart Keyword Search</h2>
-    <div id="description" class="collapsed">
+    <div class="description collapsed">
     <p>
         Smart Keyword Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
     </p>
@@ -19,113 +19,164 @@
     </p>
         <a class="more" href="javascript:void(0)">[more]</a>
     </div>
-        
-<hr />
-<div id="rules">
-    <h3>Rules</h3>
-    <div id="ruletablebuttons">
-        <picture>
-              <source
-                srcset="images/new-white.svg"
-                media="(prefers-color-scheme: dark)"
-              />
-              <img id="addrule" src="images/new-black.svg" />
-        </picture>
-        <picture>
-              <source
-                srcset="images/pencil-white.svg"
-                media="(prefers-color-scheme: dark)"
-              />
-              <img id="editrule" class="disabled" src="images/pencil-black.svg" />
-        </picture>
-        <picture>
-              <source
-                srcset="images/trash-white.svg"
-                media="(prefers-color-scheme: dark)"
-              />
-              <img id="deleterule" class="disabled" src="images/trash-black.svg" />
-        </picture>
+    <hr />
+    <div id="rules">
+        <h3>Rules</h3>
+        <div id="ruletablebuttons">
+            <picture>
+                  <source
+                    srcset="images/new-white.svg"
+                    media="(prefers-color-scheme: dark)"
+                  />
+                  <img id="addrule" src="images/new-black.svg" />
+            </picture>
+            <picture>
+                  <source
+                    srcset="images/pencil-white.svg"
+                    media="(prefers-color-scheme: dark)"
+                  />
+                  <img id="editrule" class="disabled" src="images/pencil-black.svg" />
+            </picture>
+            <picture>
+                  <source
+                    srcset="images/trash-white.svg"
+                    media="(prefers-color-scheme: dark)"
+                  />
+                  <img id="deleterule" class="disabled" src="images/trash-black.svg" />
+            </picture>
+            &nbsp;
+            <picture>
+                  <source
+                    srcset="images/settings-white.svg"
+                    media="(prefers-color-scheme: dark)"
+                  />
+                  <img id="openadmin" class="disabled" src="images/settings-black.svg" />
+            </picture>
+        </div>
+        <div id="rulelistcontainer">
+            <table id="rulelist">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>prefix</th>
+                        <th>target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="rulesfooter" class="sub">Error, startup failed. See <a href="https://sks.claude-apps.com/#troubleshooting" target="_blank">troubleshooting</a>.</div>
     </div>
-    <div id="rulelistcontainer">
-        <table id="rulelist">
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>prefix</th>
-                    <th>target</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div id="rulesfooter" class="sub">Error, startup failed. See <a href="https://sks.claude-apps.com/#troubleshooting" target="_blank">troubleshooting</a>.</div>
-</div>
-
-<div id="editpage" class="modal hidden">
-    <div class="body">
-        <div id="edit">
-            <h3 class="title edit">Edit rule</h3>
-            <h3 class="title new">Create new rule</h3>
-            <div id="advanced">Advanced:
-                <label class="switch">
-                
-                <input type="checkbox" name="advanced">
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <ul>
-            </ul>
-            <div class="form">
-                <p class="advanced-only">
-                    <span class="warningicon"></span>You're in advanced editing mode<span class="warningicon"></span>
-                    <span class="sub">
-                        Please make sure you have read the <a href="https://sks.claude-apps.com/#advancedrules" target="_blank">help section on advanced rules</a>.
-                    </span>
+    <div id="adminpage" class="modal hidden">
+        <div class="body">
+            <h3 class="title">Admin tools</h3>
+            <p>
+                Currently the admin page contains a single function: editing the rules JSON by hand. This may be useful in case one would like to make an export or import of the rules (just copy all the JSON and save it to a file, or transfer it to another computer).
+            </p>
+                <p>
+                    <span class="warningicon"></span>Note that editing the rules by hand is in beta and is done at your own risk.<span class="warningicon"></span>
                 </p>
-                <input type="hidden" name="id" />
-                <label>
-                    Name (optional):
-                    <ul class="error name"></ul>
-                    <input type="text" name="name" />
-                </label>
-                <label class="simple-only">
-                    Prefix:
-                    <ul class="error prefix"></ul>
-                    <input type="text" name="prefix" />
-                </label>
-                <label class="advanced-only">
-                    Regex:
-                    <ul class="error regexstr"></ul>
-                    <input type="text" name="regexstr" />
-                </label>
-                <label>
-                    Target url:
-                    <ul class="error target"></ul>
-                    <input type="text" name="target" />
-                </label>
-                <div class="buttons">
-                    <button name="submit" type="submit">submit</button>
-                    <button name="cancel" class="modal_close">cancel</button>
+                <p>
+                    Using this function you could remove your rules, or edit them beyond working.
+                    It's strongly adviced to copy all rules somewhere safe before starting work on them.
+                    In theory using this function should not be able to put the extension into an unusable state, however I will not guarantee that it's impossible (this is the "beta" part).
+                    Please visit the <a href="https://sks.claude-apps.com/manualeditjson.html" target="_blank">manual edit help page</a> for more examples and data format.
+                    It also tells you how to fix things if you really managed to destroy it beyond use.
+                </p>
+                <p>
+                    (Note that due to limitations in safari extensions, it's not (easily) possible to do export/import of setting through files, that's why this is the suggested way to do it.)
+                </p>
+            <div class="buttons">
+                <button id="domanualeditjson">Manually edit data (beta)</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="manualeditjson" class="modal hidden">
+        <div class="body">
+            <h3 class="title">Manually editing JSON</h3>
+            <div class="message"></div>
+            <p>
+                <textarea id="jsoneditor"></textarea>
+            </p>
+            <div class="buttons">
+                <button name="submit" type="submit">submit</button>
+                <button name="copy">copy</button>
+                <button name="clear">clear rules</button>
+                <button name="cancel" class="modal_close">cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="editpage" class="modal hidden">
+        <div class="body">
+            <div id="edit">
+                <h3 class="title edit">Edit rule</h3>
+                <h3 class="title new">Create new rule</h3>
+                <div id="advanced">Advanced:
+                    <label class="switch">
+                    
+                    <input type="checkbox" name="advanced">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <ul>
+                </ul>
+                <div class="form">
+                    <p class="advanced-only">
+                        <span class="warningicon"></span>You're in advanced editing mode<span class="warningicon"></span>
+                        <span class="sub">
+                            Please make sure you have read the <a href="https://sks.claude-apps.com/#advancedrules" target="_blank">help section on advanced rules</a>.
+                        </span>
+                    </p>
+                    <input type="hidden" name="id" />
+                    <label>
+                        Name (optional):
+                        <ul class="error name"></ul>
+                        <input type="text" name="name" />
+                    </label>
+                    <label class="simple-only">
+                        Prefix:
+                        <ul class="error prefix"></ul>
+                        <input type="text" name="prefix" />
+                    </label>
+                    <label class="advanced-only">
+                        Regex:
+                        <ul class="error regexstr"></ul>
+                        <input type="text" name="regexstr" />
+                    </label>
+                    <label>
+                        Target url:
+                        <ul class="error target"></ul>
+                        <input type="text" name="target" />
+                    </label>
+                    <div class="buttons">
+                        <button name="submit" type="submit">submit</button>
+                        <button name="cancel" class="modal_close">cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div id="deleteconfirm" class="modal hidden">
-    <div class="body">
-        <h3>Delete rule</h3>
-        <p>
-            Delete the rule "<span class="name"></span>"?
-        </p>
-        <input type="hidden" name="id" />
-        <div class="buttons">
-            <button class="yes">yes</button>
-            <button class="no modal_close">no</button>
+    <div id="deleteconfirm" class="modal hidden">
+        <div class="body">
+            <h3>Delete rule</h3>
+            <p>
+                Delete the rule "<span class="name"></span>"?
+            </p>
+            <input type="hidden" name="id" />
+            <div class="buttons">
+                <button class="yes">yes</button>
+                <button class="no modal_close">no</button>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
+

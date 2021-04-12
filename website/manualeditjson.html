@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Smart Keyword Search -- Manual edit JSON</title>
+        <link rel="stylesheet" href="index.css" />
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="mask-icon" type="image/svg+xml" href="favicon.svg" />
+        <script type="text/javascript" src="toc.js"></script>
+    </head>
+    <body>
+        <p>
+            This page describes the advanced feature of editing the JSON that describe the rules by hand for the <a href="index.html">safari Smart Keyword Search</a> extension.
+            This is not something that should happen during normal operation, however it can be useful if you need to export or import your rules, or if you need to make bulk changes.
+            Obviously it's quite possible to destroy your rules this way -- the system <em>should</em> prevent you from saving a configuration that will not work, however I cannot guarantee that there is no way to properly break your extension.
+            So as some advice: always make a backup of your rules before you start editing, so you're always able to get back to your previous, working, rules.
+        </p>
+        <p>
+            The main goal of the feature is an import/export/backup posibility for your rules.
+            Internally the rules are saved in Safari's local storage.
+            As fas as I know, there is no place to access this, except for opening the console for the extension background page, and requesting the rules there.
+            In later versions I consider saving the rules in files, maybe having them auto-sync over iCloud Drive (obviously with an option to switch off this syncing), however this is a larger operation to get right, and since I know at least 1 person is waiting for this functionality, better to release something quick.
+            Downloading/uploading files (rather than manually editing the JSON and having to copy-paste yourself) was something that was considered, however safari web extensions have very limited support for file operations.
+            For this reason, this solution was chosen (for now).
+        </p>
+        <p>
+            The text below explains the format for the rules. Note that if all you're doing is exporting / importing / backing up rules, you don't have to worry about this.
+            Only if you want to edit the rules by hand, you need the reference below.
+            <ol>
+                <li>It's JSON. This document will not explain JSON syntax; just make sure you use double quotes, place your commas correctly, and use a JSON validator online if you're unsure.</li>
+                <li>Toplevel object has 2 keys: <code>version</code> and <code>rules</code>. For now <code>version</code> is always <code>1</code> (note, this is the number 1, not a string 1.</li>
+                <li><code>rules</code> contains an array with rules. Each rule has 3 fields: <code>name</code>, <code>prefix</code> and <code>target</code> for simple rules, and <code>name</code>, <code>regexstr</code> and <code>target</code> for advanced rules (actually, internally each rule also has an <code>id</code> value, but this gets stripped and re-added automatically). The three fields match one-on-one with the 3 fields in the rules edit form.</li>
+                <li>Upon submit, the rules are validated and, if approved, saved. The edit window closes as soon as the rules are saved.</li>
+            </ol>
+        </p>
+        <p>
+            Even if one manages to save illegal rules (which should not be possible, but maybe it is), one can still open the extension and edit the rules again -- in theory.
+            If however this screen is also broken, one can always go back to the default rules by manually removing all rules.
+            To do this, <a href="https://osxdaily.com/2011/11/03/enable-the-develop-menu-in-safari/" target="_blank">enable the developer menu in safari</a>.
+            Then in the Develop menu item, select Web Extension Background Pages and then Smart Keyword Search Extension.
+            In the console you can now type <code>await browser.storage.local.get()</code>, and you should see the rules.
+            The rules have the same format as described above, although each should have a unique <code>id</code> as well.
+            Note that there is no <code>version</code> in here (for now).
+            Easiest is just to remove the rules: <code>await browser.storage.local.remove(&amp;rules&amp;)</code>.
+            Note that this will result in almost immediately the default rules being reinstalled.
+        </p>
+    </body>
+</html>

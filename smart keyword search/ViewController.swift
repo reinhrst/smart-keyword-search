@@ -43,8 +43,11 @@ class ViewController: NSViewController {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: extensionBundleIdentifier) { error in
             guard error == nil else {
                 // Insert code to inform the user that something went wrong.
+                NSLog("Safari extensions cannot be opened: \(error!)")
                 return
             }
+            
+            NSLog("Safari extensions opened successfully")
 
             DispatchQueue.main.async {
                 NSApplication.shared.terminate(nil)

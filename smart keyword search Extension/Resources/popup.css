@@ -5,6 +5,7 @@
 body {
     width: 450px;
     padding: 10px;
+    height: 100%;
 
     font-family: system-ui;
 }
@@ -34,7 +35,7 @@ button:active {
     background-color: #00D;
 }
 
-#description {
+.description {
     font-size: 12px;
     position: relative;
     top: 0px;
@@ -42,34 +43,34 @@ button:active {
     max-height: 20em;
     transition: max-height 2s;
 }
-#description.collapsed {
+.description.collapsed {
     max-height: 1.4em;
 }
 
-#description.collapsed > p:first-child {
+.description.collapsed > p:first-child {
     overflow: hidden;
     padding-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-#description > p:first-child {
+.description > p:first-child {
     margin-top: 0;
 }
 
 
-#description .more {
+.description .more {
     position: absolute;
     top: 0px;
     right: 0px;
     display: none;
 }
 
-#description.collapsed .more {
+.description.collapsed .more {
     display: block;
 }
 
-#description code {
+.description code {
     border: 1px rgba(160, 160, 160, .5) solid;
     display: inline-block;
     padding: 2px;
@@ -263,4 +264,20 @@ span.warningicon {
     background-image: url(images/warning.svg);
     background-size: 100% 100%;
     display: inline-block;
+}
+
+#jsoneditor {
+    width: 90%;
+    height: 200px;
+}
+
+.message.error {
+    color: red;
+    background-color: rgba(200, 0, 0, 0);
+}
+
+.message.ok {
+    color: green;
+    background-color: rgba(0, 200, 0, 0);
+}
 }

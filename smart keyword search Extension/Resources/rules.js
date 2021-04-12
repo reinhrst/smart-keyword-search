@@ -100,16 +100,16 @@ class Rule {
         if (Object.entries(obj).length != 4) {
             throw "Not a valid rule, not 4 elements"
         }
-        if (!"id" in obj) {
+        if (!("id" in obj)) {
             throw "Required key 'id' missing"
         }
-        if (!"name" in obj) {
+        if (!("name" in obj)) {
             throw "Required key 'name' missing"
         }
-        if (!"target" in obj) {
+        if (!("target" in obj)) {
             throw "Required key 'target' missing"
         }
-        if (!"prefix" in obj && !"regexstr" in obj) {
+        if (!("prefix" in obj) && !("regexstr" in obj)) {
             throw "Required key 'prefix' or 'regexstr' missing"
         }
 
