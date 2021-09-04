@@ -5,19 +5,23 @@
 body {
     width: 450px;
     padding: 10px;
-    height: 100%;
-
     font-family: system-ui;
+}
+
+#mainpage {
+    position: relative;
 }
 
 #logo {
     position: absolute;
-    left: 25px;
+    left: 5px;
     width: 50px;
 }
 
-body > h2 {
-    text-align: center;
+#title {
+    padding-left: 75px;
+    padding-top: 11px;
+    margin-top: 0;
 }
 
 button {
@@ -35,47 +39,6 @@ button:active {
     background-color: #00D;
 }
 
-.description {
-    font-size: 12px;
-    position: relative;
-    top: 0px;
-    overflow: hidden;
-    max-height: 20em;
-    transition: max-height 2s;
-}
-.description.collapsed {
-    max-height: 1.4em;
-}
-
-.description.collapsed > p:first-child {
-    overflow: hidden;
-    padding-right: 50px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.description > p:first-child {
-    margin-top: 0;
-}
-
-
-.description .more {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    display: none;
-}
-
-.description.collapsed .more {
-    display: block;
-}
-
-.description code {
-    border: 1px rgba(160, 160, 160, .5) solid;
-    display: inline-block;
-    padding: 2px;
-    background-color: rgba(160, 160, 160, .3);
-}
 
 #editpage #edit {
     position: relative;
@@ -115,9 +78,13 @@ button:active {
 #rules {
     margin-top: 8px;
     position: relative;
-    top: 0px;
+    clear: both;
 }
 
+#rules > h3 {
+    padding-top: 3px;
+    padding-left: 55px;
+}
 
 #ruletablebuttons {
     position: absolute;
@@ -126,7 +93,7 @@ button:active {
     cursor: default;
 }
 
-#ruletablebuttons img {
+#ruletablebuttons img, #ruletablebuttons span.icon {
     height: 1.2em;
     width: 1.2em;
     margin: 3px;
@@ -141,8 +108,10 @@ button:active {
 }
 
 #rulelistcontainer {
-    width: 100%;
+    width: calc(100% - 2px); /* minus border */
+    max-height: 460px;
     overflow-x: auto;
+    overflow-y: auto;
     border: 1px solid black;
 }
 
@@ -151,6 +120,7 @@ button:active {
     border-collapse: collapse;
     margin: -1px;
     font-size: 0.9em;
+    min-width: calc(100% + 2px);
 }
 
 #rulelist, #rulelist th, #rulelist td {
@@ -280,4 +250,22 @@ span.warningicon {
     color: green;
     background-color: rgba(0, 200, 0, 0);
 }
+
+picture > span.icon{
+    display: inline-block;
+    text-align: center;
+}
+picture > span.icon > span {
+    display: block;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    position: relative;
+    top: -1px;
+}
+picture > span.icon > span > span {
+    position: relative;
+    font-size: 1.1em;
+    top: -3px;
 }

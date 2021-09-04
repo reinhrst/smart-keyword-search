@@ -8,65 +8,76 @@
     <script type="module" src="popup.js"></script>
 </head>
 <body>
-    <img id="logo" src="images/icon-128.png" />
-    <h2>Smart Keyword Search</h2>
-    <div class="description collapsed">
-    <p>
-        Smart Keyword Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
-    </p>
-    <p>
-        Please visit our <a href="https://sks.claude-apps.com/" target="_blank">help page</a> to get an extensive walk-through, see usage examples and leave questions, comments or suggestions.
-    </p>
-        <a class="more" href="javascript:void(0)">[more]</a>
+    <div id="mainpage">
+        <img id="logo" src="images/icon-128.png" />
+        <h2 id="title">Smart Keyword Search</h2>
+        <div id="rules">
+            <h3>Rules</h3>
+            <div id="ruletablebuttons">
+                <picture>
+                      <source
+                        srcset="images/new-white.svg"
+                        media="(prefers-color-scheme: dark)"
+                      />
+                      <img id="addrule" src="images/new-black.svg" />
+                </picture>
+                <picture>
+                      <source
+                        srcset="images/pencil-white.svg"
+                        media="(prefers-color-scheme: dark)"
+                      />
+                      <img id="editrule" class="disabled" src="images/pencil-black.svg" />
+                </picture>
+                <picture>
+                      <source
+                        srcset="images/trash-white.svg"
+                        media="(prefers-color-scheme: dark)"
+                      />
+                      <img id="deleterule" class="disabled" src="images/trash-black.svg" />
+                </picture>
+                &nbsp;
+                <picture>
+                      <source
+                        srcset="images/settings-white.svg"
+                        media="(prefers-color-scheme: dark)"
+                      />
+                      <img id="openadmin" class="disabled" src="images/settings-black.svg" />
+                </picture>
+                &nbsp;
+                <picture><span class="icon" id="openabout"><span><span>?</span></span></span></picture>
+            </div>
+            <div id="rulelistcontainer">
+                <table id="rulelist">
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>prefix</th>
+                            <th>target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div id="rulesfooter" class="sub">Error, startup failed. See <a href="https://sks.claude-apps.com/#troubleshooting" target="_blank">troubleshooting</a>.</div>
     </div>
-    <hr />
-    <div id="rules">
-        <h3>Rules</h3>
-        <div id="ruletablebuttons">
-            <picture>
-                  <source
-                    srcset="images/new-white.svg"
-                    media="(prefers-color-scheme: dark)"
-                  />
-                  <img id="addrule" src="images/new-black.svg" />
-            </picture>
-            <picture>
-                  <source
-                    srcset="images/pencil-white.svg"
-                    media="(prefers-color-scheme: dark)"
-                  />
-                  <img id="editrule" class="disabled" src="images/pencil-black.svg" />
-            </picture>
-            <picture>
-                  <source
-                    srcset="images/trash-white.svg"
-                    media="(prefers-color-scheme: dark)"
-                  />
-                  <img id="deleterule" class="disabled" src="images/trash-black.svg" />
-            </picture>
-            &nbsp;
-            <picture>
-                  <source
-                    srcset="images/settings-white.svg"
-                    media="(prefers-color-scheme: dark)"
-                  />
-                  <img id="openadmin" class="disabled" src="images/settings-black.svg" />
-            </picture>
+    </div>
+    <div id="aboutpage" class="modal hidden">
+        <div class="body">
+            <h3 class="title">About Smart Keyword Search</h3>
+            <p>
+                Smart Keyword Search is an extension that redirects searches with a specific pattern to specific sites. For instance, it can be configured so that all searches starting with <code>am&nbsp;</code> are sent to the amazon website, and all searches starting with <code>p&nbsp;</code> to the python documentation.
+            </p>
+            <p>
+                Please visit our <a href="https://sks.claude-apps.com/" target="_blank">help page</a> to get an extensive walk-through, see usage examples and leave questions, comments or suggestions.
+            </p>
+            <p>
+                Smart Keyword Search was developed by Reinoud Elhorst (<a href="https://blog.claude.nl/?from=sks">blog</a>) as a hobby project. There is no monetization component.
+            </p>
+            <div class="buttons">
+                <button name="cancel" class="modal_close">close</button>
+            </div>
         </div>
-        <div id="rulelistcontainer">
-            <table id="rulelist">
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>prefix</th>
-                        <th>target</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-        <div id="rulesfooter" class="sub">Error, startup failed. See <a href="https://sks.claude-apps.com/#troubleshooting" target="_blank">troubleshooting</a>.</div>
     </div>
     <div id="adminpage" class="modal hidden">
         <div class="body">

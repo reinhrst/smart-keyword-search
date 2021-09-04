@@ -6,6 +6,9 @@ document.querySelectorAll(".description").forEach((el) => {
     })
 })
 
+document.querySelector("#openabout").addEventListener("click", (_event) => {
+    open_modal("aboutpage");
+})
 
 document.querySelector("#openadmin").addEventListener("click", (_event) => {
     open_modal("adminpage");
