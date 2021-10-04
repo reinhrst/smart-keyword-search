@@ -85,21 +85,23 @@
             <p>
                 Currently the admin page contains a single function: editing the rules JSON by hand. This may be useful in case one would like to make an export or import of the rules (just copy all the JSON and save it to a file, or transfer it to another computer).
             </p>
-                <p>
-                    <span class="warningicon"></span>Note that editing the rules by hand is in beta and is done at your own risk.<span class="warningicon"></span>
+                <p class="warningicon">
+                    Note that editing the rules by hand is an advanced operation that may destroy all your rules if not done correctly. Use it at your own risk.
                 </p>
                 <p>
                     Using this function you could remove your rules, or edit them beyond working.
                     It's strongly adviced to copy all rules somewhere safe before starting work on them.
-                    In theory using this function should not be able to put the extension into an unusable state, however I will not guarantee that it's impossible (this is the "beta" part).
+                    Before allowing saving of the new rules, they are checked for consistency, so doing this manual edit should not be able to break the extension.
                     Please visit the <a href="https://sks.claude-apps.com/manualeditjson.html" target="_blank">manual edit help page</a> for more examples and data format.
                     It also tells you how to fix things if you really managed to destroy it beyond use.
+                    In that case, also consider filing a bug report explaining what you did.
                 </p>
                 <p>
                     (Note that due to limitations in safari extensions, it's not (easily) possible to do export/import of setting through files, that's why this is the suggested way to do it.)
                 </p>
             <div class="buttons">
-                <button id="domanualeditjson">Manually edit data (beta)</button>
+                <button id="domanualeditjson"><span class="warningicon"></span> Manually edit data <span class="warningicon"></span></button>
+                <button name="cancel" class="modal_close">cancel</button>
             </div>
 
         </div>

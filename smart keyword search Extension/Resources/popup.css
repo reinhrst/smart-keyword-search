@@ -228,6 +228,19 @@ button:active {
 
 }
 
+p.warningicon::before {
+    content: url(images/warning.svg);
+    background-size: 100% 100%;
+    float: left;
+}
+
+p.warningicon::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 span.warningicon {
     width: 1rem;
     height: 1rem;

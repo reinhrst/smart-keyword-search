@@ -12,7 +12,7 @@ div.modal {
 
 div.modal > .body {
     width: calc(100% - 2 * var(--body-hmargin) -2 * var(--body-padding) - 2 * var(--body-border-width));
-    margin: 100px var(--body-hmargin);
+    margin: 50px var(--body-hmargin);
     border: var(--body-border-width) rgb(160, 160, 160) solid;
     padding: var(--body-padding);
     -webkit-backdrop-filter: blur(20px);
