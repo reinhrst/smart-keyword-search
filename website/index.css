@@ -49,6 +49,10 @@ ul.examples div.description::before {
     content: "Description: ";
 }
 
+ul.examples div.regex::before {
+    content: "Regex: ";
+}
+
 ul.examples div.target::before {
     content: "Target: ";
 }

@@ -201,6 +201,16 @@
             Smart Keyword Search therefore uses some crude protection: it has a simple internal counter, and if it's triggered more than 5 times in 5 seconds, it temporarily stops working.
             Let me know if this behaviour is a problem for you, and I can look at alternative approaches.
         </p>
+        <h3 id="loops">Import / Export / Backup (&amp; manual edit)</h3>
+        <p>
+            The extension contains an advanced feature that can be used for importing/exporting rules, which can be used to make a backup of all your rules, or to migrate them to a new system.
+            Through this function, it's also possible to manually edit the rules in their native JSON format, and it is possible to end up with an unworkable configuation, so doing so is at your own risk.
+            Importing / Exporting / Making a backup happens by copying the rule-code between the extension and some other location, for instance an email to yourself, or in the Apple Notes app.
+            Do note that if you paste the rules into a Microsoft Word document, it may happen that the quotes (&quot;) get all messed up; Word has a tendency to change a simple double quote (&quot;) into open and closing quotes (&#x201c; and &#x201d;); they may look nicer to humans (or they may look the same), but in computer code they mess everything up.
+        </p>
+        <p>
+        See <a href="manualeditjson.html">this document</a> for more information on this feature.
+        </p>
 
         <h2 id="examples">Rule examples</h2>
         <p>
@@ -257,6 +267,35 @@
                 <li>
                     <div class="description">Google Scholar</div>
                     <div class="target"><code>https://scholar.google.com/scholar?q={search}</code></div>
+                </li>
+            </ul>
+        </p>
+        <p>
+        Finally I will add a couple of examples of advanced rules; mostly to show off what is possible there.
+        Please note that all regular expressions start with <code>^</code> and end with <code>$</code> in order to enforce that the whole search string is used for the match.
+        If you're unfamiliar with regular expressions, you should probably read up on them before you use any of these examples (or just try it and see if you can get it to work).
+        </p>
+        <p>
+            <ul class="examples">
+                <li>
+                    <div class="description">Prefix a search with <code>!</code> to always search on Google (even though normally you would use DuckDuckGo or something else).</div>
+                    <div class="regex"><code>^!(?&lt;search&gt;.*)$</code></div>
+                    <div class="target"><code>https://www.imdb.com/find?q={search}</code></div>
+                </li>
+                <li>
+                    <div class="description">Static redirect (also mentioned earlier); this one gets you a random xkcd cartoon.</div>
+                    <div class="regex"><code>^rkcd$</code></div>
+                    <div class="target"><code>https://c.xkcd.com/random/comic/</code></div>
+                </li>
+                <li>
+                    <div class="description">Use 2 substring matches in one clause to get driving directions <code>dir from Amsterdam to Berlin</code> (see <a href="https://developers.google.com/maps/documentation/urls/get-started" target="_blank">this page</a> on how to build Google Maps urls).</div>
+                    <div class="regex"><code>^dir from (?&lt;from&gt;.*) to (?&lt;to&gt;.*)$</code></div>
+                    <div class="target"><code>https://www.google.com/maps/dir/?api=1&amp;origin={from}&amp;destination={to}</code></div>
+                </li>
+                <li>
+                    <div class="description">You can even expand to more parameters (if you want both this one and the one above, make sure this one is <em>higher</em> in your rule list, since it's more specific. It allows you to search for things like <code>dir from Amsterdam to Berlin while bicycling</code>.</div>
+                    <div class="regex"><code>^dir from (?&lt;from&gt;.*) to (?&lt;to&gt;.*) while (?&lt;method&gt;.*)$</code></div>
+                    <div class="target"><code>https://www.google.com/maps/dir/?api=1&amp;origin={from}&amp;destination={to}&amp;travelmode={method}</code></div>
                 </li>
             </ul>
         </p>
