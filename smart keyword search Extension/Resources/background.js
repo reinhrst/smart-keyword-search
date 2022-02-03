@@ -12,6 +12,19 @@ const ENGINES = {
         },
         search_param_name: "q",
     },
+    // very occasionally there is a safari that adds another url parameter
+    google_with_safari_group: {
+        url: "https://www.google.com/search",
+        expected_query_params: {
+            "client": "safari",
+            "rls": /.*/,
+            "q": /.*/,
+            "ie": "UTF-8",
+            "oe": "UTF-8",
+            "safari_group": /[0-9]+/,
+        },
+        search_param_name: "q",
+    },
     yahoo: {
         url: "https://search.yahoo.com/search",
         expected_query_params: {
@@ -68,30 +81,39 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
         return
     }
     const url = new URL(details.url)
-    const engine = Object.values(ENGINES).filter((engine) => details.url.startsWith(engine.url))[0]
-    console.assert(engine, "Should always have an engine match")
+    const engines = Object.entries(ENGINES).filter(([_, engine]) => details.url.startsWith(engine.url))
+    console.assert(engines.length, "Should always have an engine match")
 
-    for (const [key, value] of url.searchParams) {
-        const expected_value = engine.expected_query_params[key]
-        if (typeof expected_value === 'undefined' ||
-            (expected_value.test ? !expected_value.test(value) : expected_value !== value)) {
-                        console.log(`Not redirecting because unexpected url parameter ${key}`)
-            return
+    function findSearch(engine_name, engine) {
+        for (const [key, value] of url.searchParams) {
+            const expected_value = engine.expected_query_params[key]
+            if (typeof expected_value === 'undefined' ||
+                (expected_value.test ? !expected_value.test(value) : expected_value !== value)) {
+                            console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
+                return [null, null]
+            }
         }
-    }
-    for (const [key, value] of Object.entries(engine.expected_query_params)) {
-        if (url.searchParams.getAll(key).length != 1) {
-            console.log(`Not redirecting because unexpected url parameter ${key}`)
-            return
+        for (const [key, value] of Object.entries(engine.expected_query_params)) {
+            if (url.searchParams.getAll(key).length != 1) {
+                console.log(`Not redirecting because expected url parameter ${key} not present (engine: ${engine_name})`)
+                return [null, null]
+            }
         }
+        const search = url.searchParams.get(engine.search_param_name)
+        console.log(`Match for engine ${engine_name}, search = ${JSON.stringify(search)}`)
+        return [engine_name, search]
     }
-    const search = url.searchParams.get(engine.search_param_name)
+    const [engine_name, search] = engines.map(([engine_name, engine]) => findSearch(engine_name, engine)).filter(s => s[0] !== null)[0]
+    if (engine_name === null) {
+        console.log("No mathing engine found")
+        return
+    }
     for (const rule of rules) {
         const match = rule.regex.exec(search)
         if (!match) {
             continue
         }
-        console.log(`Found match for: ${rule.regex}`)
+        console.log(`Found match for: ${rule.regex} (engine: ${engine_name})`)
         const newurl = Object.entries(match.groups || {}).reduce((current, newdata) => {
             return current
             .replace("{" + newdata[0] + "}", encodeURIComponent(newdata[1]))
@@ -108,7 +130,7 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
         browser.tabs.update(details.tabId, {url: newurl})
         return
     }
-    console.log("No match, continuing to site");
+    console.log(`No match, (engine: ${engine_name}) continuing to site`);
 }, {urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]}, null)
 console.log("running")
 
