@@ -51,6 +51,31 @@ const ENGINES = {
         },
         search_param_name: "q",
     },
+    duckgogo_with_safari_group: {
+        url: "https://duckduckgo.com/",
+        expected_query_params: {
+            "t": "osx",
+            "q": /.*/,
+            "safari_group": /[0-9]+/,
+        },
+        search_param_name: "q",
+    },
+    
+    ecosia_with_tts: {
+        url: "https://www.ecosia.org/search",
+        expected_query_params: {
+            "tts": "st_asaf_macos",
+            "q": /.*/,
+        },
+        search_param_name: "q",
+    },
+    ecosia: {
+        url: "https://www.ecosia.org/search",
+        expected_query_params: {
+            "q": /.*/,
+        },
+        search_param_name: "q",
+    },
 }
 
 let rules = null
