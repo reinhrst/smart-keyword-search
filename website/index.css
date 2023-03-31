@@ -90,3 +90,10 @@ ul.examples div::before {
     }
 }
 
+.note {
+  border: 1px solid black;
+  border-radius: .5em;
+  background-color: hsl(240 50% 95%);
+  padding: 1em;
+  margin: 1em;
+}
