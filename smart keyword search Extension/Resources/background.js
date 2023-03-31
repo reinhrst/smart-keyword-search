@@ -1,5 +1,9 @@
 import {Rule} from './rules.js'
 
+const IGNORE_URL_PARAMETERS_IN_MATCH = new Set([
+    "safari_group",
+    "anon_safari_group",
+])
 const ENGINES = {
     google: {
         url: "https://www.google.com/search",
@@ -9,19 +13,6 @@ const ENGINES = {
             "q": /.*/,
             "ie": "UTF-8",
             "oe": "UTF-8",
-        },
-        search_param_name: "q",
-    },
-    // very occasionally there is a safari that adds another url parameter
-    google_with_safari_group: {
-        url: "https://www.google.com/search",
-        expected_query_params: {
-            "client": "safari",
-            "rls": /.*/,
-            "q": /.*/,
-            "ie": "UTF-8",
-            "oe": "UTF-8",
-            "safari_group": /[0-9]+/,
         },
         search_param_name: "q",
     },
@@ -43,7 +34,7 @@ const ENGINES = {
         },
         search_param_name: "q",
     },
-    duckgogo: {
+    duckduckgo: {
         url: "https://duckduckgo.com/",
         expected_query_params: {
             "t": "osx",
@@ -51,16 +42,6 @@ const ENGINES = {
         },
         search_param_name: "q",
     },
-    duckgogo_with_safari_group: {
-        url: "https://duckduckgo.com/",
-        expected_query_params: {
-            "t": "osx",
-            "q": /.*/,
-            "safari_group": /[0-9]+/,
-        },
-        search_param_name: "q",
-    },
-    
     ecosia_with_tts: {
         url: "https://www.ecosia.org/search",
         expected_query_params: {
@@ -111,6 +92,9 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
 
     function findSearch(engine_name, engine) {
         for (const [key, value] of url.searchParams) {
+            if (IGNORE_URL_PARAMETERS_IN_MATCH.has(key)) {
+                continue;
+            }
             const expected_value = engine.expected_query_params[key]
             if (typeof expected_value === 'undefined' ||
                 (expected_value.test ? !expected_value.test(value) : expected_value !== value)) {
@@ -156,7 +140,7 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
         return
     }
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
-}, {urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]}, null)
+}, {urls: Object.values(ENGINES).map((engine) => engine.url)/*, types: ["main_frame"]  -- types seem not supported in Safari 16.4 */}, null)
 console.log("running")
 
 console.log({urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]})
