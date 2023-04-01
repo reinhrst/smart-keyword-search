@@ -454,7 +454,7 @@
                 <li>Prefix: <code>2de</code></li>
                 <li>Target: <code>https://de.pons.com/&uuml;bersetzung/englisch-deutsch/{search}</code></li>
             </ul>
-            These characters are not allowed in urls (see <a href="https://stackoverflow.com/a/1856809/1207489" target="_blank">this stackoverflow reply</a> and <a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank">here the RFC</a>.
+            These characters are not allowed in urls (see <a href="https://stackoverflow.com/a/1856809/1207489" target="_blank">this stackoverflow reply</a> and <a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank">here the RFC</a>).
         </p>
         <p>
             This may be a bit confusing because the browser (usually) allows you to use the url as shown above, and even shows you this url in the address bar (even though it's not a valid URL).
@@ -467,6 +467,8 @@
                 <li>Prefix: <code>2de</code></li>
                 <li>Target: <code>https://de.pons.com/%C3%BCbersetzung/englisch-deutsch/{search}</code></li>
             </ul>
+            You can use tools like <a href="https://www.urlencoder.org" target="_blank">urlencoder.org</a> to find the url encodings of characters or whole words.
+            Only url-encode the part between the slashes; standard url encoding will change every <code>/</code> into <code>%2F</code>, and this will not work for your target url!
         </p>
         <p>
             I have it on my todo list to (at least) create an alert if someone enters an invalid URL in the target field, or better yet, fix it automatically.
