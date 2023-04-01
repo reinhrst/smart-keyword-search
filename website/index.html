@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Smart Keyword Search</title>
         <link rel="stylesheet" href="index.css" />
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -443,7 +444,34 @@
             </ul>
             Now type <code>test my search</code> in the address bar, and it should redirect you to example.com.
             Make sure to delete this rule afterwards, or you will trigger it every time you make a search starting with "test".
+        </p>
+
+        <h3 id="extended-chars-in-url-not-working">Rules with non-ascii characters in url not eokring</h3>
         <p>
+            Some websites have non-ascii characters in their path-part of the url. For instance, consider the following rule:
+            <ul>
+                <li>Description: <code>To German</code></li>
+                <li>Prefix: <code>2de</code></li>
+                <li>Target: <code>https://de.pons.com/&uuml;bersetzung/englisch-deutsch/{search}</code></li>
+            </ul>
+            These characters are not allowed in urls (see <a href="https://stackoverflow.com/a/1856809/1207489" target="_blank">this stackoverflow reply</a> and <a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank">here the RFC</a>.
+        </p>
+        <p>
+            This may be a bit confusing because the browser (usually) allows you to use the url as shown above, and even shows you this url in the address bar (even though it's not a valid URL).
+            Unfortunately when Smart Keyword Search asks Safari to redirect to this URL, Safari silently ignores the request (which means that it looks as if the rule is not working).
+        </p>
+        <p>
+            The solution is to use valid URLs by escaping the non-ascii character (note that you need URL escaping, not HTML escaping, so <code>%C3%BC</code>, not <code>&amp;uuml;</code> nor <code>&amp;#252;</code>.
+            <ul>
+                <li>Description: <code>To German</code></li>
+                <li>Prefix: <code>2de</code></li>
+                <li>Target: <code>https://de.pons.com/%C3%BCbersetzung/englisch-deutsch/{search}</code></li>
+            </ul>
+        </p>
+        <p>
+            I have it on my todo list to (at least) create an alert if someone enters an invalid URL in the target field, or better yet, fix it automatically.
+            Please let me know if you need this functionality.
+        </p>
 
         <h2 id="faq">FAQ</h2>
         <dl class="faq">
