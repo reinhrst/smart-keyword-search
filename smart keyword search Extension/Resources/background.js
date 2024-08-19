@@ -80,7 +80,7 @@ updateRules()
 let recentMatchDates = [];
 
 
-browser.webRequest.onBeforeRequest.addListener((details) => {
+false && browser.webRequest.onBeforeRequest.addListener((details) => {
     console.log("tripped")
     if (rules === null) {
         console.log("no rules loaded yet")
@@ -88,7 +88,7 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
     }
     const url = new URL(details.url)
     const engines = Object.entries(ENGINES).filter(([_, engine]) => details.url.startsWith(engine.url))
-    console.assert(engines.length, "Should always have an engine match")
+    console.assert(engines.length, `Should always have an engine match: ${url}`)
 
     function findSearch(engine_name, engine) {
         for (const [key, value] of url.searchParams) {
@@ -98,7 +98,7 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
             const expected_value = engine.expected_query_params[key]
             if (typeof expected_value === 'undefined' ||
                 (expected_value.test ? !expected_value.test(value) : expected_value !== value)) {
-                            console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
+                            console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name}): ${url}`)
                 return [null, null]
             }
         }
@@ -140,7 +140,36 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
         return
     }
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
-}, {urls: Object.values(ENGINES).map((engine) => engine.url)/*, types: ["main_frame"]  -- types seem not supported in Safari 16.4 */}, null)
+}, {urls: ["*://*/*"]/*, types: ["main_frame"]  -- types seem not supported in Safari 16.4 */}, null)
 console.log("running")
 
 console.log({urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]})
+
+
+async function setRules() {
+    let oldRules = await browser.declarativeNetRequest.getDynamicRules();
+    console.log({oldRules})
+    await browser.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: oldRules.map(rule => rule.id),
+    addRules: [
+               {
+                   "id": 1,
+                   "priority": 4,
+                   "condition": {
+                       "regexFilter": ".*www.example.com.*",
+                       "resourceTypes": ["main_frame"]
+                   },
+                   "action": {
+                       "type": "redirect",
+                       "redirect": {
+                           "url": "https://behave.claude-apps.com/"
+                       }
+                   }
+               },
+               ]
+    })
+    let newRules = await browser.declarativeNetRequest.getDynamicRules();
+    console.log({oldRules, newRules})
+    browser.declarativeNetRequest.onRuleMatchedDebug.addListener(match => console.log(match))
+}
+setRules()
