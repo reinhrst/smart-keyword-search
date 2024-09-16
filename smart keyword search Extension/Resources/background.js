@@ -80,7 +80,7 @@ updateRules()
 let recentMatchDates = [];
 
 
-browser.webRequest.onBeforeRequest.addListener((details) => {
+const doRedirect = (details) => {
     console.log("tripped")
     if (rules === null) {
         console.log("no rules loaded yet")
@@ -88,8 +88,8 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
     }
     const url = new URL(details.url)
     const engines = Object.entries(ENGINES).filter(([_, engine]) => details.url.startsWith(engine.url))
-    console.assert(engines.length, "Should always have an engine match")
-
+    console.assert(engines.length, `Should always have an engine match: ${url}`)
+    
     function findSearch(engine_name, engine) {
         for (const [key, value] of url.searchParams) {
             if (IGNORE_URL_PARAMETERS_IN_MATCH.has(key)) {
@@ -140,7 +140,14 @@ browser.webRequest.onBeforeRequest.addListener((details) => {
         return
     }
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
-}, {urls: Object.values(ENGINES).map((engine) => engine.url)/*, types: ["main_frame"]  -- types seem not supported in Safari 16.4 */}, null)
+}
+
+browser.webRequest.onBeforeRequest.addListener(doRedirect, {
+    urls: Object.values(ENGINES).map((engine) => engine.url)}, null)
+
+/** Since there is a bug in macOS 18, we need an extra test on onCompleted */
+browser.webRequest.onCompleted.addListener(doRedirect, {
+    urls: Object.values(ENGINES).map((engine) => engine.url)}, null)
 console.log("running")
 
 console.log({urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]})
