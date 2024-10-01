@@ -152,20 +152,6 @@ async function setRules() {
     await browser.declarativeNetRequest.updateDynamicRules({
     removeRuleIds: oldRules.map(rule => rule.id),
         addRules: [
-                   {
-                       "id": 1,
-                       "priority": 4,
-                       "condition": {
-                           "regexFilter": "https://www\\.google\\.com/search\\?client=safari&rls=en&q=([^&]*)&ie=UTF-8&oe=UTF-8",
-                           "resourceTypes": ["main_frame"]
-                       },
-                       "action": {
-                           "type": "redirect",
-                           "redirect": {
-                               "regexSubstitution": "https://behave.claude-apps.com/blabla2"
-                           }
-                       }
-                   },
                    ]
         })
     let newRules = await browser.declarativeNetRequest.getDynamicRules();

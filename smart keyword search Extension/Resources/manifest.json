@@ -36,9 +36,16 @@
         "https://duckduckgo.com/"
     ],
 
+    "declarative_net_request" : {
+      "rule_resources" : [{
+        "id": "redirect-to-extension-rulset",
+        "enabled": true,
+        "path": "redirect-to-extension-rules.json"
+      }]
+    },
+    
     "permissions": [
         "declarativeNetRequestWithHostAccess",
-        "webRequest",
         "storage"
     ]
 }

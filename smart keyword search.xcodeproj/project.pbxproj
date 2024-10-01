@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FEC5F942CAC1BFC00D9DC51 /* redirect-to-extension-rules.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FEC5F932CAC1BEB00D9DC51 /* redirect-to-extension-rules.json */; };
 		439216042561293900DDD78B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216032561293900DDD78B /* AppDelegate.swift */; };
 		439216072561293900DDD78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439216052561293900DDD78B /* Main.storyboard */; };
 		439216092561293900DDD78B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439216082561293900DDD78B /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3FEC5F932CAC1BEB00D9DC51 /* redirect-to-extension-rules.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "redirect-to-extension-rules.json"; sourceTree = "<group>"; };
 		439215FF2561293900DDD78B /* Smart Keyword Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Keyword Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		439216022561293900DDD78B /* smart_keyword_search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = smart_keyword_search.entitlements; sourceTree = "<group>"; };
 		439216032561293900DDD78B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				439216BE2562CB5600DDD78B /* switch.css */,
 				439216402561293B00DDD78B /* popup.js */,
 				439216CA2563170500DDD78B /* rules.js */,
+				3FEC5F932CAC1BEB00D9DC51 /* redirect-to-extension-rules.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEC5F942CAC1BFC00D9DC51 /* redirect-to-extension-rules.json in Resources */,
 				439216CB2563170500DDD78B /* rules.js in Resources */,
 				439216D125632FA200DDD78B /* background.html in Resources */,
 				439216392561293B00DDD78B /* background.js in Resources */,

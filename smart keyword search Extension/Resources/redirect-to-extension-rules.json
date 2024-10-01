@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "priority": 4,
+    "condition": {
+        "requestDomains": [
+            "www.google.com",
+            "www.ecosia.org",
+            "search.yahoo.com",
+            "www.bing.com",
+            "duckduckgo.com"
+        ],
+        "resourceTypes": ["main_frame"]
+    },
+    "action": {
+        "type": "redirect",
+        "redirect": {
+            "url": "https://behave.claude-apps.com/blabla2"
+        }
+    }
+}]
+
