@@ -4,7 +4,7 @@
 
     "name": "__MSG_extension_name__",
     "description": "__MSG_extension_description__",
-    "version": "1.7",
+    "version": "1.7.1.2",
 
     "icons": {
         "48": "images/icon-48.png",
@@ -16,7 +16,8 @@
     },
 
     "background": {
-        "page": "background.html"
+        "service_worker": "background.js",
+        "type": "module"
     },
 
     "action": {
@@ -33,10 +34,10 @@
         "https://www.ecosia.org/search",
         "https://search.yahoo.com/search",
         "https://www.bing.com/search",
-        "https://duckduckgo.com/",
+        "https://duckduckgo.com/"
     ],
     "permissions": [
-        "storage",
-        "webNavigation"
+        "webNavigation",
+        "storage"
     ]
 }
