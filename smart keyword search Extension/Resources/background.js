@@ -142,15 +142,13 @@ const doRedirect = (details) => {
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
 }
 
-browser.webNavigation.onBeforeNavigate.addListener(doRedirect)
+browser.webNavigation.onBeforeNavigate.addListener(doRedirect, {url: Object.values(ENGINES).map(engine => {
+    const url = new URL(engine.url)
+    return {
+        hostEquals: url.host,
+        pathEquals: url.pathname,
+        schemes: [url.protocol.slice(0, -1)]
+    }
+})})
 
-/** Since there is a bug in macOS 18, we need an extra test on onCompleted */
-//browser.webRequest.onCompleted.addListener(doRedirect, {
-//    urls: Object.values(ENGINES).map((engine) => engine.url)}, null)
-
-
-browser.tabs.onUpdated.addListener((tabId, changeInfo, tabInfo) => {
-    console.log({tabId, changeInfo, tabInfo})
-})
-
-console.log("running1")
+console.log("started")

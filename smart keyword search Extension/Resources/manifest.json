@@ -28,7 +28,7 @@
             "38": "images/icon-toolbar-38.png"
         }
     },
-    "optional_host_permissions": [
+    "host_permissions": [
         "https://www.google.com/search",
         "https://www.ecosia.org/search",
         "https://search.yahoo.com/search",
