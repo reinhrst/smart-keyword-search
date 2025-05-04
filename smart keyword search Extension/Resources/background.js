@@ -142,6 +142,15 @@ const doRedirect = (details) => {
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
 }
 
+console.log(Object.values(ENGINES).map(engine => {
+    const url = new URL(engine.url)
+    return {
+        hostEquals: url.host,
+        pathEquals: url.pathname,
+        schemes: [url.protocol.slice(0, -1)]
+    }
+}))
+
 browser.webNavigation.onBeforeNavigate.addListener(doRedirect, {url: Object.values(ENGINES).map(engine => {
     const url = new URL(engine.url)
     return {
@@ -150,5 +159,6 @@ browser.webNavigation.onBeforeNavigate.addListener(doRedirect, {url: Object.valu
         schemes: [url.protocol.slice(0, -1)]
     }
 })})
+
 
 console.log("started")

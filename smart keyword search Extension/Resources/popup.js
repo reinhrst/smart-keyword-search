@@ -6,6 +6,10 @@ document.querySelectorAll(".description").forEach((el) => {
     })
 })
 
+console.log("S")
+document.querySelector("#permissions").addEventListener("click", () => browser.permissions.request({permissions: ['webNavigation']}).then(res => console.log(res)))
+console.log("A")
+
 document.querySelector("#openabout").addEventListener("click", (_event) => {
     open_modal("aboutpage");
 })
@@ -324,6 +328,8 @@ function updateRuleFromEdit() {
         }
     })
 }
+
+
 
 browser.storage.onChanged.addListener(() => {updateView()})
 updateView()

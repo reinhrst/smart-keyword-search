@@ -4,7 +4,7 @@
 
     "name": "__MSG_extension_name__",
     "description": "__MSG_extension_description__",
-    "version": "1.7.1.2",
+    "version": "1.7.1.5",
 
     "icons": {
         "48": "images/icon-48.png",
@@ -16,9 +16,15 @@
     },
 
     "background": {
-        "service_worker": "background.js",
+        "scripts": ["background.js"],
         "type": "module"
     },
+    
+    "options_ui": {
+        "page": "popup.html",
+        "open_in_tab": false
+    },
+
 
     "action": {
         "default_popup": "popup.html",
@@ -29,6 +35,7 @@
             "38": "images/icon-toolbar-38.png"
         }
     },
+    "optional_host_permissions": [],
     "host_permissions": [
         "https://www.google.com/search",
         "https://www.ecosia.org/search",
@@ -36,8 +43,10 @@
         "https://www.bing.com/search",
         "https://duckduckgo.com/"
     ],
+    "optional_permissions": [
+        "webNavigation"
+    ],
     "permissions": [
-        "webNavigation",
         "storage"
     ]
 }
