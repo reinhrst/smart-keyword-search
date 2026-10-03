@@ -14,6 +14,9 @@ const ENGINES = {
             "ie": "UTF-8",
             "oe": "UTF-8",
         },
+        optional_query_params: {
+          "channel": /[0-9]+/,
+        },
         search_param_name: "q",
     },
     yahoo: {
@@ -59,6 +62,19 @@ const ENGINES = {
     },
 }
 
+// sanity check, keys should not be both in expected and optional. Also check that search param is in expected
+for (const [engine, engine_data] of Object.entries(ENGINES)) {
+    const optional_params = engine_data.optional_query_params ?? {}
+    for (const param_name of Object.keys(engine_data.expected_query_params)) {
+        if (typeof optional_params[param_name] !== "undefined") {
+            throw new Error(`Error in config: Engine ${engine} has ${param_name} in both expected and optional parameters`)
+        }
+    }
+    if (typeof engine_data.expected_query_params[engine_data.search_param_name] === "undefined") {
+        throw new Error(`Error in config: Engine ${engine} needs search param ${engine_data.search_param_name} in expected parameters`)
+    }
+}
+
 let rules = null
 
 function updateRules() {
@@ -91,14 +107,16 @@ const doRedirect = (details) => {
     console.assert(engines.length, `Should always have an engine match: ${url}`)
     
     function findSearch(engine_name, engine) {
+        const expected_and_optional_params = Object.assign({}, engine.expected_query_params, engine.optional_query_params ?? {})
         for (const [key, value] of url.searchParams) {
             if (IGNORE_URL_PARAMETERS_IN_MATCH.has(key)) {
                 continue;
             }
-            const expected_value = engine.expected_query_params[key]
-            if (typeof expected_value === 'undefined' ||
-                (expected_value.test ? !expected_value.test(value) : expected_value !== value)) {
-                            console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
+            const expected_or_optional_value = expected_and_optional_params[key]
+            const is_expected_or_optional = typeof expected_or_optional_value !== 'undefined' &&
+            (expected_or_optional_value.test ? expected_or_optional_value.test(value) : expected_or_optional_value === value)
+            if (!is_expected_or_optional) {
+                console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
                 return [null, null]
             }
         }
@@ -112,11 +130,12 @@ const doRedirect = (details) => {
         console.log(`Match for engine ${engine_name}, search = ${JSON.stringify(search)}`)
         return [engine_name, search]
     }
-    const [engine_name, search] = engines.map(([engine_name, engine]) => findSearch(engine_name, engine)).filter(s => s[0] !== null)[0]
-    if (engine_name === null) {
+    const mapresult = engines.map(([engine_name, engine]) => findSearch(engine_name, engine)).filter(s => s[0] !== null)[0]
+    if (typeof mapresult === "undefined") {
         console.log("No mathing engine found")
         return
     }
+    const [engine_name, search] = mapresult
     for (const rule of rules) {
         const match = rule.regex.exec(search)
         if (!match) {
