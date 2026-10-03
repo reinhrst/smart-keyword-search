@@ -62,19 +62,6 @@ const ENGINES = {
     },
 }
 
-// sanity check, keys should not be both in expected and optional. Also check that search param is in expected
-for (const [engine, engine_data] of Object.entries(ENGINES)) {
-    const optional_params = engine_data.optional_query_params ?? {}
-    for (const param_name of Object.keys(engine_data.expected_query_params)) {
-        if (typeof optional_params[param_name] !== "undefined") {
-            throw new Error(`Error in config: Engine ${engine} has ${param_name} in both expected and optional parameters`)
-        }
-    }
-    if (typeof engine_data.expected_query_params[engine_data.search_param_name] === "undefined") {
-        throw new Error(`Error in config: Engine ${engine} needs search param ${engine_data.search_param_name} in expected parameters`)
-    }
-}
-
 let rules = null
 
 function updateRules() {
@@ -95,8 +82,34 @@ updateRules()
 
 let recentMatchDates = [];
 
+function findSearch(url, engine_name, engine) {
+    const expected_and_optional_params = Object.assign({}, engine.expected_query_params, engine.optional_query_params ?? {})
+    for (const [key, value] of url.searchParams) {
+        if (IGNORE_URL_PARAMETERS_IN_MATCH.has(key)) {
+            continue;
+        }
+        const expected_or_optional_value = expected_and_optional_params[key]
+        const is_expected_or_optional = typeof expected_or_optional_value !== 'undefined' &&
+        (expected_or_optional_value.test ? expected_or_optional_value.test(value) : expected_or_optional_value === value)
+        if (!is_expected_or_optional) {
+            console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
+            return [null, null]
+        }
+    }
+    for (const [key, value] of Object.entries(engine.expected_query_params)) {
+        if (url.searchParams.getAll(key).length != 1) {
+            console.log(`Not redirecting because expected url parameter ${key} not present (engine: ${engine_name})`)
+            return [null, null]
+        }
+    }
+    const search = url.searchParams.get(engine.search_param_name)
+    console.log(`Match for engine ${engine_name}, search = ${JSON.stringify(search)}`)
+    return [engine_name, search]
+}
 
-const doRedirect = (details) => {
+
+
+const doRedirect = (details, callback) => {
     console.log("tripped")
     if (rules === null) {
         console.log("no rules loaded yet")
@@ -106,31 +119,7 @@ const doRedirect = (details) => {
     const engines = Object.entries(ENGINES).filter(([_, engine]) => details.url.startsWith(engine.url))
     console.assert(engines.length, `Should always have an engine match: ${url}`)
     
-    function findSearch(engine_name, engine) {
-        const expected_and_optional_params = Object.assign({}, engine.expected_query_params, engine.optional_query_params ?? {})
-        for (const [key, value] of url.searchParams) {
-            if (IGNORE_URL_PARAMETERS_IN_MATCH.has(key)) {
-                continue;
-            }
-            const expected_or_optional_value = expected_and_optional_params[key]
-            const is_expected_or_optional = typeof expected_or_optional_value !== 'undefined' &&
-            (expected_or_optional_value.test ? expected_or_optional_value.test(value) : expected_or_optional_value === value)
-            if (!is_expected_or_optional) {
-                console.log(`Not redirecting because unexpected url parameter ${key} (engine: ${engine_name})`)
-                return [null, null]
-            }
-        }
-        for (const [key, value] of Object.entries(engine.expected_query_params)) {
-            if (url.searchParams.getAll(key).length != 1) {
-                console.log(`Not redirecting because expected url parameter ${key} not present (engine: ${engine_name})`)
-                return [null, null]
-            }
-        }
-        const search = url.searchParams.get(engine.search_param_name)
-        console.log(`Match for engine ${engine_name}, search = ${JSON.stringify(search)}`)
-        return [engine_name, search]
-    }
-    const mapresult = engines.map(([engine_name, engine]) => findSearch(engine_name, engine)).filter(s => s[0] !== null)[0]
+    const mapresult = engines.map(([engine_name, engine]) => findSearch(url, engine_name, engine)).filter(s => s[0] !== null)[0]
     if (typeof mapresult === "undefined") {
         console.log("No mathing engine found")
         return
@@ -155,18 +144,51 @@ const doRedirect = (details) => {
             return
         }
         recentMatchDates.push(now)
-        browser.tabs.update(details.tabId, {url: newurl})
+        callback(newurl)
         return
     }
     console.log(`No match, (engine: ${engine_name}) continuing to site`);
 }
 
-browser.webRequest.onBeforeRequest.addListener(doRedirect, {
+const doRedirectWrapper = (details) => doRedirect(details, (url) => browser.tabs.update(details.tabId, {url}))
+
+browser.webRequest.onBeforeRequest.addListener(doRedirectWrapper, {
     urls: Object.values(ENGINES).map((engine) => engine.url)}, null)
 
 /** Since there is a bug in macOS 18, we need an extra test on onCompleted */
-browser.webRequest.onCompleted.addListener(doRedirect, {
+browser.webRequest.onCompleted.addListener(doRedirectWrapper, {
     urls: Object.values(ENGINES).map((engine) => engine.url)}, null)
 console.log("running")
 
 console.log({urls: Object.values(ENGINES).map((engine) => engine.url), types: ["main_frame"]})
+
+;(function poorMansTest() {
+    ;(function KeysShouldNotBeInBothExpectedAndOptional() {
+        for (const [engine, engine_data] of Object.entries(ENGINES)) {
+            const optional_params = engine_data.optional_query_params ?? {}
+            for (const param_name of Object.keys(engine_data.expected_query_params)) {
+                if (typeof optional_params[param_name] !== "undefined") {
+                    throw new Error(`Error in config: Engine ${engine} has ${param_name} in both expected and optional parameters`)
+                }
+            }
+        }
+    })();
+    ;(function SearchKeyShouldBeInExpected() {
+        for (const [engine, engine_data] of Object.entries(ENGINES)) {
+            if (typeof engine_data.expected_query_params[engine_data.search_param_name] === "undefined") {
+                throw new Error(`Error in config: Engine ${engine} needs search param ${engine_data.search_param_name} in expected parameters`)
+            }
+        }
+    })();
+    ;(function CheckMatching() {
+        if (findSearch(new URL("https://www.google.com/search?client=safari&rls=en&q=w%20test&ie=UTF-8&oe=UTF-8"), "google", ENGINES["google"])[1] !== "w test") {
+                throw new Error(`Engine Google doesn't match without channel'`)
+        }
+        if (findSearch(new URL("https://www.google.com/search?client=safari&rls=en&q=w%20test&ie=UTF-8&oe=UTF-8&channel=43"), "google", ENGINES["google"])[1] !== "w test") {
+                throw new Error(`Engine Google doesn't match with channel'`)
+        }
+    })();
+})();
+
+
+
